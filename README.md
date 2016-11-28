@@ -1,3 +1,6 @@
+
+[![Build Status](https://travis-ci.org/swcraig/oxford-dictionary.svg?branch=master)](https://travis-ci.org/swcraig/oxford-dictionary)
+[![Code Climate](https://codeclimate.com/github/swcraig/oxford-dictionary/badges/gpa.svg)](https://codeclimate.com/github/swcraig/oxford-dictionary)
 # OxfordDictionary
 
 Ruby wrapper to consume the [Oxford Dictionary](https://developer.oxforddictionaries.com/documentation) API.
