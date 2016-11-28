@@ -27,7 +27,7 @@ def fixture(file)
 end
 
 def api_url(path)
-  "#{OxfordDictionary::Request::BASE_URI}/#{path}"
+  "#{OxfordDictionary::Request::BASE}/#{path}"
 end
 
 RSpec.configure do |config|

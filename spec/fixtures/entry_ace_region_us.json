@@ -1,0 +1,264 @@
+{
+  "metadata": {
+    "provider": "Oxford University Press"
+  },
+  "results": [
+    {
+      "id": "ace",
+      "language": "en",
+      "lexicalEntries": [
+        {
+          "entries": [
+            {
+              "etymologies": [
+                "Middle English (denoting the “one” on dice): via Old French from Latin as unity, a unit"
+              ],
+              "homographNumber": "000",
+              "senses": [
+                {
+                  "definitions": [
+                    "a playing card with a single spot on it, ranked as the highest card in its suit in most card games"
+                  ],
+                  "domains": [
+                    "Cards"
+                  ],
+                  "examples": [
+                    {
+                      "text": "the ace of diamonds"
+                    },
+                    {
+                      "registers": [
+                        "figurative"
+                      ],
+                      "text": "life had started dealing him aces again"
+                    }
+                  ],
+                  "id": "m_en_us1219614.001"
+                },
+                {
+                  "definitions": [
+                    "a person who excels at a particular sport or other activity"
+                  ],
+                  "domains": [
+                    "Sport"
+                  ],
+                  "examples": [
+                    {
+                      "text": "a motorcycle ace"
+                    }
+                  ],
+                  "id": "m_en_us1219614.003",
+                  "registers": [
+                    "informal"
+                  ],
+                  "subsenses": [
+                    {
+                      "definitions": [
+                        "a pilot who has shot down many enemy aircraft, especially in World War I or World War II"
+                      ],
+                      "domains": [
+                        "Air Force"
+                      ],
+                      "id": "m_en_us1219614.004",
+                      "registers": [
+                        "informal"
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "definitions": [
+                    "(in tennis and similar games) a service that an opponent is unable to touch and thus wins a point"
+                  ],
+                  "domains": [
+                    "Tennis"
+                  ],
+                  "id": "m_en_us1219614.005",
+                  "subsenses": [
+                    {
+                      "definitions": [
+                        "a hole in one"
+                      ],
+                      "domains": [
+                        "Golf"
+                      ],
+                      "id": "m_en_us1219614.002",
+                      "registers": [
+                        "informal"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "language": "en",
+          "lexicalCategory": "Noun",
+          "pronunciations": [
+            {
+              "audioFile": "http://audio.oxforddictionaries.com/en/mp3/ace_us_1.mp3",
+              "phoneticNotation": "IPA",
+              "phoneticSpelling": "eɪs"
+            },
+            {
+              "phoneticNotation": "respell",
+              "phoneticSpelling": "ās"
+            }
+          ],
+          "text": "ace"
+        },
+        {
+          "entries": [
+            {
+              "homographNumber": "002",
+              "senses": [
+                {
+                  "definitions": [
+                    "(in tennis and similar games) serve an ace against (an opponent)"
+                  ],
+                  "domains": [
+                    "Tennis"
+                  ],
+                  "id": "m_en_us1219614.007",
+                  "registers": [
+                    "informal"
+                  ],
+                  "subsenses": [
+                    {
+                      "definitions": [
+                        "score an ace on (a hole) or with (a shot)"
+                      ],
+                      "domains": [
+                        "Golf"
+                      ],
+                      "id": "m_en_us1219614.008",
+                      "registers": [
+                        "informal"
+                      ]
+                    },
+                    {
+                      "definitions": [
+                        "get an A or its equivalent in (a test or exam)"
+                      ],
+                      "examples": [
+                        {
+                          "text": "I aced my grammar test"
+                        }
+                      ],
+                      "id": "m_en_us1219614.009",
+                      "regions": [
+                        "North American"
+                      ],
+                      "registers": [
+                        "informal"
+                      ]
+                    },
+                    {
+                      "definitions": [
+                        "outdo someone in a competitive situation"
+                      ],
+                      "examples": [
+                        {
+                          "text": "the magazine won an award, acing out its rivals"
+                        },
+                        {
+                          "text": "it wasn't our intention to ace Phil out of a job"
+                        }
+                      ],
+                      "id": "m_en_us1219614.010",
+                      "registers": [
+                        "informal"
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "grammaticalFeatures": [
+            {
+              "text": "Transitive",
+              "type": "Subcategorization"
+            }
+          ],
+          "language": "en",
+          "lexicalCategory": "Verb",
+          "pronunciations": [
+            {
+              "audioFile": "http://audio.oxforddictionaries.com/en/mp3/ace_us_1.mp3",
+              "phoneticNotation": "IPA",
+              "phoneticSpelling": "eɪs"
+            },
+            {
+              "phoneticNotation": "respell",
+              "phoneticSpelling": "ās"
+            }
+          ],
+          "text": "ace"
+        },
+        {
+          "entries": [
+            {
+              "homographNumber": "001",
+              "senses": [
+                {
+                  "definitions": [
+                    "very good"
+                  ],
+                  "examples": [
+                    {
+                      "text": "an ace swimmer"
+                    }
+                  ],
+                  "id": "m_en_us1219614.006",
+                  "registers": [
+                    "informal"
+                  ]
+                }
+              ]
+            }
+          ],
+          "language": "en",
+          "lexicalCategory": "Adjective",
+          "pronunciations": [
+            {
+              "audioFile": "http://audio.oxforddictionaries.com/en/mp3/ace_us_1.mp3",
+              "phoneticNotation": "IPA",
+              "phoneticSpelling": "eɪs"
+            },
+            {
+              "phoneticNotation": "respell",
+              "phoneticSpelling": "ās"
+            }
+          ],
+          "text": "ace"
+        },
+        {
+          "entries": [
+            {
+              "senses": [
+                {
+                  "definitions": [
+                    "Army Corps of Engineers"
+                  ],
+                  "domains": [
+                    "Military"
+                  ],
+                  "id": "m_en_us1219613.001",
+                  "regions": [
+                    "US"
+                  ]
+                }
+              ]
+            }
+          ],
+          "language": "en",
+          "lexicalCategory": "Other",
+          "text": "ACE"
+        }
+      ],
+      "type": "headword",
+      "word": "ace"
+    }
+  ]
+}

@@ -7,12 +7,12 @@ module OxfordDictionary
   module Request
     include HTTParty
 
-    BASE_URI = 'https://od-api.oxforddictionaries.com/api/v1'.freeze
+    BASE = 'https://od-api.oxforddictionaries.com/api/v1'.freeze
     ACCEPT_TYPE = 'application/json'.freeze
 
-    def request(endpoint, query, params)
+    def request(endpoint, q, params)
       lang = params.key?(:lang) ? params[:lang] : 'en'
-      url = "#{BASE_URI}/#{endpoint}/#{lang}/#{query}/#{finish_url(params)}"
+      url = "#{BASE}/#{endpoint}/#{lang}/#{q}/#{finish_url(params)}".chomp('/')
       resp = HTTParty.get(
         url,
         headers:
@@ -24,16 +24,23 @@ module OxfordDictionary
     end
 
     def finish_url(params)
-      params.delete(:lang) if params.key?(:lang)
-      if params.key?(:end)
-        params[:end]
-      elsif !params.empty?
-        query = ''
-        params.each do |k, v|
-          query += "#{k}=#{v};"
-        end
-        query
+      params[:end] || create_query_string(params)
+    end
+
+    def create_query_string(params)
+      params.delete(:lang)
+      count = 0
+      query = ''
+      params.each do |k, v|
+        query += "#{k}=#{options(v)}"
+        query += ';' if count < params.size - 1
+        count += 1
       end
+      query
+    end
+
+    def options(v)
+      v.is_a?(Array) ? v.join(',') : v
     end
   end
 end

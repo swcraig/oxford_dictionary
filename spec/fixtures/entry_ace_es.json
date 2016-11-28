@@ -1,0 +1,41 @@
+{
+  "metadata": {
+    "provider": "Oxford University Press"
+  },
+  "results": [
+    {
+      "id": "ace",
+      "language": "es",
+      "lexicalEntries": [
+        {
+          "entries": [
+            {
+              "senses": [
+                {
+                  "definitions": [
+                    "Jugada de tenis en la que el jugador obtiene directamente un tanto al efectuar un saque sin que el adversario consiga tocar la pelota"
+                  ],
+                  "domains": [
+                    "Sport"
+                  ],
+                  "id": "genID_d122689e19735"
+                }
+              ]
+            }
+          ],
+          "grammaticalFeatures": [
+            {
+              "text": "Masculine",
+              "type": "Gender"
+            }
+          ],
+          "language": "es",
+          "lexicalCategory": "Noun",
+          "text": "ace"
+        }
+      ],
+      "type": "headword",
+      "word": "ace"
+    }
+  ]
+}

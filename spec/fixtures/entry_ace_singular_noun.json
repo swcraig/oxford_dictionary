@@ -1,0 +1,20 @@
+{
+  "metadata": {
+    "provider": "Oxford University Press"
+  },
+  "results": [
+    {
+      "id": "ace",
+      "language": "en",
+      "lexicalEntries": [
+        {
+          "language": "en",
+          "lexicalCategory": "Noun",
+          "text": "ace"
+        }
+      ],
+      "type": "headword",
+      "word": "ace"
+    }
+  ]
+}
