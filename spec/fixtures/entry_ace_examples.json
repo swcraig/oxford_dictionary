@@ -1,0 +1,145 @@
+{
+  "metadata": {
+    "provider": "Oxford University Press"
+  },
+  "results": [
+    {
+      "id": "ace",
+      "language": "en",
+      "lexicalEntries": [
+        {
+          "entries": [
+            {
+              "homographNumber": "000",
+              "senses": [
+                {
+                  "examples": [
+                    {
+                      "text": "life had started dealing him aces again"
+                    },
+                    {
+                      "text": "the ace of diamonds"
+                    }
+                  ],
+                  "id": "m_en_gb0004640.001"
+                },
+                {
+                  "examples": [
+                    {
+                      "text": "a motorcycle ace"
+                    }
+                  ],
+                  "id": "m_en_gb0004640.002",
+                  "subsenses": [
+                    {
+                      "examples": [
+                        {
+                          "text": "a Battle of Britain ace"
+                        }
+                      ],
+                      "id": "m_en_gb0004640.003"
+                    }
+                  ]
+                },
+                {
+                  "examples": [
+                    {
+                      "text": "Nadal banged down eight aces in the set"
+                    }
+                  ],
+                  "id": "m_en_gb0004640.004",
+                  "subsenses": [
+                    {
+                      "examples": [
+                        {
+                          "text": "his hole in one at the 15th was Senior's second ace as a professional"
+                        }
+                      ],
+                      "id": "m_en_gb0004640.005"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "language": "en",
+          "lexicalCategory": "Noun",
+          "text": "ace"
+        },
+        {
+          "entries": [
+            {
+              "homographNumber": "002",
+              "senses": [
+                {
+                  "examples": [
+                    {
+                      "text": "he can ace opponents with serves of no more than 62 mph"
+                    }
+                  ],
+                  "id": "m_en_gb0004640.007",
+                  "subsenses": [
+                    {
+                      "examples": [
+                        {
+                          "text": "there was a prize for the first player to ace the hole"
+                        }
+                      ],
+                      "id": "m_en_gb0004640.008"
+                    }
+                  ]
+                },
+                {
+                  "examples": [
+                    {
+                      "text": "I aced my grammar test"
+                    }
+                  ],
+                  "id": "m_en_gb0004640.009",
+                  "subsenses": [
+                    {
+                      "examples": [
+                        {
+                          "text": "the magazine won an award, acing out its rivals"
+                        }
+                      ],
+                      "id": "m_en_gb0004640.010"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "language": "en",
+          "lexicalCategory": "Verb",
+          "text": "ace"
+        },
+        {
+          "entries": [
+            {
+              "homographNumber": "001",
+              "senses": [
+                {
+                  "examples": [
+                    {
+                      "text": "an ace swimmer"
+                    },
+                    {
+                      "text": "Ace! You've done it!"
+                    }
+                  ],
+                  "id": "m_en_gb0004640.006"
+                }
+              ]
+            }
+          ],
+          "language": "en",
+          "lexicalCategory": "Adjective",
+          "text": "ace"
+        }
+      ],
+      "type": "headword",
+      "word": "ace"
+    }
+  ]
+}
