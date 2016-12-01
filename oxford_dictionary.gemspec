@@ -28,4 +28,5 @@ Gem::Specification.new do |spec|
 
   spec.add_runtime_dependency 'httparty', '~> 0.14.0'
   spec.add_runtime_dependency 'hashie', '~> 3.4.6'
+  spec.add_runtime_dependency 'plissken', '~> 0.1.0'
 end

@@ -9,7 +9,7 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     stub_get('entries/en/ace/examples', 'entry_ace_examples.json')
     stub_get('entries/en/ace/pronunciations', 'entry_ace_pronunciations.json')
     stub_get(
-      'entries/en/ace/grammaticalFeatures=singular,past;lexicalCategory=noun',
+      'entries/en/ace/grammaticalFeatures=singular,past;lexical_category=noun',
       'entry_ace_singular_noun.json'
     )
   end
@@ -25,28 +25,28 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     end
 
     it 'has a lexical entry' do
-      lex = resp.lexicalEntries.first
+      lex = resp.lexical_entries.first
       expect(lex.language).to eq('en')
-      expect(lex.lexicalCategory).to eq('Noun')
+      expect(lex.lexical_category).to eq('Noun')
       expect(lex.text).to eq('ace')
       expect(lex.entries).to be_an Array
     end
 
     it 'has an entry' do
-      entry = resp.lexicalEntries.first.entries.first[1].first
-      expect(entry.homographNumber).to eq('000')
+      entry = resp.lexical_entries.first.entries.first[1].first
+      expect(entry.homograph_number).to eq('000')
       expect(entry.etymologies).to be_an Array
       expect(entry.senses).to be_an Array
     end
 
     it 'has senses' do
-      senses = resp.lexicalEntries.first.entries.first[1].first.senses.first
+      senses = resp.lexical_entries.first.entries.first[1].first.senses.first
       expect(senses.id).to eq('m_en_gb0004640.001')
     end
 
     it 'has a pronunciation' do
-      pronunciation = resp.lexicalEntries.first.pronunciations.first
-      expect(pronunciation.phoneticNotation).to eq('IPA')
+      pronunciation = resp.lexical_entries.first.pronunciations.first
+      expect(pronunciation.phonetic_notation).to eq('IPA')
     end
   end
 
@@ -56,7 +56,7 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     let(:resp_sing_noun) do
       client.entry(
         'ace',
-        grammaticalFeatures: %w(singular past), lexicalCategory: 'noun'
+        grammaticalFeatures: %w(singular past), lexical_category: 'noun'
       )
     end
 
@@ -66,12 +66,12 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     end
 
     it 'returns us region entry' do
-      sense = resp_region_us.lexicalEntries[0].entries[0][1][0].senses[0]
+      sense = resp_region_us.lexical_entries[0].entries[0][1][0].senses[0]
       expect(sense.id).to include('us')
     end
 
     it 'returns a singular noun entry' do
-      expect(resp_sing_noun.lexicalEntries.size).to eq(1)
+      expect(resp_sing_noun.lexical_entries.size).to eq(1)
     end
   end
 
@@ -79,8 +79,8 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     let(:resp) { client.entry_definitions('ace') }
     it 'has definition properties' do
       expect(resp.id).to eq('ace')
-      expect(resp.lexicalEntries.first).not_to have_key('pronunciations')
-      sense = resp.lexicalEntries.first.entries.first[1].first.senses.first
+      expect(resp.lexical_entries.first).not_to have_key('pronunciations')
+      sense = resp.lexical_entries.first.entries.first[1].first.senses.first
       expect(sense.definitions).to be_an Array
     end
   end
@@ -89,8 +89,8 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     let(:resp) { client.entry_examples('ace') }
     it 'has example properties' do
       expect(resp.id).to eq('ace')
-      expect(resp.lexicalEntries.first).not_to have_key('pronunciations')
-      sense = resp.lexicalEntries.first.entries.first[1].first.senses.first
+      expect(resp.lexical_entries.first).not_to have_key('pronunciations')
+      sense = resp.lexical_entries.first.entries.first[1].first.senses.first
       expect(sense.examples).to be_an Array
     end
   end
@@ -99,7 +99,7 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     let(:resp) { client.entry_pronunciations('ace') }
     it 'has pronunciation properties' do
       expect(resp.id).to eq('ace')
-      expect(resp.lexicalEntries.first).not_to have_key('entries')
+      expect(resp.lexical_entries.first).not_to have_key('entries')
     end
   end
 end
