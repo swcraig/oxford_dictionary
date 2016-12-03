@@ -8,6 +8,7 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
     stub_get('entries/en/ace/definitions', 'entry_ace_definitions.json')
     stub_get('entries/en/ace/examples', 'entry_ace_examples.json')
     stub_get('entries/en/ace/pronunciations', 'entry_ace_pronunciations.json')
+    stub_get('entries/en/vapid/sentences', 'entry_vapid_sentences.json')
     stub_get(
       'entries/en/ace/grammaticalFeatures=singular,past;lexical_category=noun',
       'entry_ace_singular_noun.json'
@@ -100,6 +101,16 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
     it 'has pronunciation properties' do
       expect(resp.id).to eq('ace')
       expect(resp.lexical_entries[0].entries).to be_empty
+    end
+  end
+
+  context '#entry_sentences' do
+    let(:resp) { client.entry_sentences('vapid') }
+    it 'has sentence properties' do
+      expect(resp.id).to eq('vapid')
+      expect(resp.lexical_entries[0].entries).to be_empty
+      expect(resp.lexical_entries[0].sentences).to be_an Array
+      expect(resp.lexical_entries[0].sentences[0]['sense_ids']).to be_an Array
     end
   end
 end

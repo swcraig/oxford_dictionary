@@ -10,4 +10,6 @@ class LexicalEntry
   attribute :text, String
   attribute :entries, Array[Entry]
   attribute :pronunciations, Array[Pronunciation]
+
+  attribute :sentences, Array[Hash]
 end

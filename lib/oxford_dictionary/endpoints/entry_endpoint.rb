@@ -27,6 +27,11 @@ module OxfordDictionary
         entry_request(query, params)
       end
 
+      def entry_sentences(query, params = {})
+        params[:end] = 'sentences'
+        entry_request(query, params)
+      end
+
       def entry_request(query, params)
         EntryResponse.new(request(ENDPOINT, query, params))
       end
