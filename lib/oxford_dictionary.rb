@@ -1,5 +1,5 @@
 require 'oxford_dictionary/client'
-require 'oxford_dictionary/endpoint/entry_endpoint'
+require 'oxford_dictionary/endpoints/entry_endpoint'
 require 'oxford_dictionary/version'
 require 'oxford_dictionary/request'
 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe OxfordDictionary::Endpoint::EntryEndpoint do
+describe OxfordDictionary::Endpoints::EntryEndpoint do
   before do
     stub_get('entries/en/ace', 'entry_ace.json')
     stub_get('entries/es/ace', 'entry_ace_es.json')
@@ -33,14 +33,14 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     end
 
     it 'has an entry' do
-      entry = resp.lexical_entries.first.entries.first[1].first
+      entry = resp.lexical_entries.first.entries.first
       expect(entry.homograph_number).to eq('000')
       expect(entry.etymologies).to be_an Array
       expect(entry.senses).to be_an Array
     end
 
     it 'has senses' do
-      senses = resp.lexical_entries.first.entries.first[1].first.senses.first
+      senses = resp.lexical_entries.first.entries.first.senses.first
       expect(senses.id).to eq('m_en_gb0004640.001')
     end
 
@@ -66,7 +66,7 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     end
 
     it 'returns us region entry' do
-      sense = resp_region_us.lexical_entries[0].entries[0][1][0].senses[0]
+      sense = resp_region_us.lexical_entries[0].entries.first.senses[0]
       expect(sense.id).to include('us')
     end
 
@@ -79,8 +79,8 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     let(:resp) { client.entry_definitions('ace') }
     it 'has definition properties' do
       expect(resp.id).to eq('ace')
-      expect(resp.lexical_entries.first).not_to have_key('pronunciations')
-      sense = resp.lexical_entries.first.entries.first[1].first.senses.first
+      expect(resp.lexical_entries[0].pronunciations).to be_empty
+      sense = resp.lexical_entries.first.entries.first.senses.first
       expect(sense.definitions).to be_an Array
     end
   end
@@ -89,8 +89,8 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     let(:resp) { client.entry_examples('ace') }
     it 'has example properties' do
       expect(resp.id).to eq('ace')
-      expect(resp.lexical_entries.first).not_to have_key('pronunciations')
-      sense = resp.lexical_entries.first.entries.first[1].first.senses.first
+      expect(resp.lexical_entries[0].pronunciations).to be_empty
+      sense = resp.lexical_entries.first.entries.first.senses.first
       expect(sense.examples).to be_an Array
     end
   end
@@ -99,7 +99,7 @@ describe OxfordDictionary::Endpoint::EntryEndpoint do
     let(:resp) { client.entry_pronunciations('ace') }
     it 'has pronunciation properties' do
       expect(resp.id).to eq('ace')
-      expect(resp.lexical_entries.first).not_to have_key('entries')
+      expect(resp.lexical_entries[0].entries).to be_empty
     end
   end
 end

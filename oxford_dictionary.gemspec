@@ -27,6 +27,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '~> 0.45.0'
 
   spec.add_runtime_dependency 'httparty', '~> 0.14.0'
-  spec.add_runtime_dependency 'hashie', '~> 3.4.6'
+  spec.add_runtime_dependency 'virtus', '~> 1.0.5'
   spec.add_runtime_dependency 'plissken', '~> 0.1.0'
 end

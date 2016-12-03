@@ -1,9 +1,6 @@
 require 'httparty'
 require 'json'
-require 'hashie'
 require 'plissken'
-
-# Use plissken? 1.0.0
 
 module OxfordDictionary
   # Handles all of the actual API calls
@@ -23,7 +20,7 @@ module OxfordDictionary
             'Accept' => ACCEPT_TYPE, 'app_id' => app_id, 'app_key' => app_key
           }
       )
-      Hashie::Mash.new(JSON.parse(resp.body).to_snake_keys).results.first
+      JSON.parse(resp.body).to_snake_keys['results'][0]
     end
 
     def finish_url(params)

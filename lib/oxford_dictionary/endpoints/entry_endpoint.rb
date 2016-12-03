@@ -1,7 +1,8 @@
 require 'oxford_dictionary/request'
+require 'oxford_dictionary/api_objects/entry_response'
 
 module OxfordDictionary
-  module Endpoint
+  module Endpoints
     # Interface to '/entries' endpoint
     module EntryEndpoint
       include OxfordDictionary::Request
@@ -27,7 +28,7 @@ module OxfordDictionary
       end
 
       def entry_request(query, params)
-        request(ENDPOINT, query, params)
+        EntryResponse.new(request(ENDPOINT, query, params))
       end
     end
   end
