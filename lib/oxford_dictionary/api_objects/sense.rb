@@ -7,4 +7,7 @@ class Sense
   attribute :definitions, Array[String]
   attribute :examples, Array[Hash]
   attribute :registers, Array[String]
+
+  attribute :antonyms, Array[OpenStruct]
+  attribute :synonyms, Array[OpenStruct]
 end

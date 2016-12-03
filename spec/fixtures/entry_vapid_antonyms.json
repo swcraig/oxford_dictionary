@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "provider": "Oxford University Press"
+  },
+  "results": [
+    {
+      "id": "vapid",
+      "language": "en",
+      "lexicalEntries": [
+        {
+          "entries": [
+            {
+              "senses": [
+                {
+                  "antonyms": [
+                    {
+                      "id": "lively",
+                      "language": "en",
+                      "text": "lively"
+                    },
+                    {
+                      "id": "colourful",
+                      "language": "en",
+                      "text": "colourful"
+                    },
+                    {
+                      "id": "exciting",
+                      "language": "en",
+                      "text": "exciting"
+                    }
+                  ],
+                  "examples": [
+                    {
+                      "text": "tuneful but vapid musical comedies"
+                    }
+                  ],
+                  "id": "t_en_gb0015849.001"
+                }
+              ]
+            }
+          ],
+          "language": "en",
+          "lexicalCategory": "Adjective",
+          "text": "vapid"
+        }
+      ],
+      "type": "headword",
+      "word": "vapid"
+    }
+  ]
+}

@@ -32,6 +32,21 @@ module OxfordDictionary
         entry_request(query, params)
       end
 
+      def entry_antonyms(query, params = {})
+        params[:end] = 'antonyms'
+        entry_request(query, params)
+      end
+
+      def entry_synonyms(query, params = {})
+        params[:end] = 'synonyms'
+        entry_request(query, params)
+      end
+
+      def entry_antonyms_synonyms(query, params = {})
+        params[:end] = 'synonyms;antonyms'
+        entry_request(query, params)
+      end
+
       def entry_request(query, params)
         EntryResponse.new(request(ENDPOINT, query, params))
       end

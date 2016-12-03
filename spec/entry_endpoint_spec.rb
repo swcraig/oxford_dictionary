@@ -9,9 +9,15 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
     stub_get('entries/en/ace/examples', 'entry_ace_examples.json')
     stub_get('entries/en/ace/pronunciations', 'entry_ace_pronunciations.json')
     stub_get('entries/en/vapid/sentences', 'entry_vapid_sentences.json')
+    stub_get('entries/en/vapid/antonyms', 'entry_vapid_antonyms.json')
+    stub_get('entries/en/vapid/synonyms', 'entry_vapid_synonyms.json')
     stub_get(
       'entries/en/ace/grammaticalFeatures=singular,past;lexical_category=noun',
       'entry_ace_singular_noun.json'
+    )
+    stub_get(
+      'entries/en/vapid/synonyms;antonyms',
+      'entry_vapid_antonym_synonym.json'
     )
   end
   let(:client) { OxfordDictionary.new(app_id: 'ID', app_key: 'SECRET') }
@@ -111,6 +117,35 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
       expect(resp.lexical_entries[0].entries).to be_empty
       expect(resp.lexical_entries[0].sentences).to be_an Array
       expect(resp.lexical_entries[0].sentences[0]['sense_ids']).to be_an Array
+    end
+  end
+
+  context '#entry_antonyms' do
+    let(:resp) { client.entry_antonyms('vapid') }
+    it 'has antonym properties' do
+      expect(resp.id).to eq('vapid')
+      entry = resp.lexical_entries[0].entries[0]
+      expect(entry.senses[0].antonyms).to be_an Array
+    end
+  end
+
+  context '#entry_synonyms' do
+    let(:resp) { client.entry_synonyms('vapid') }
+    it 'has synonym properties' do
+      expect(resp.id).to eq('vapid')
+      entry = resp.lexical_entries[0].entries[0]
+      expect(entry.senses[0].synonyms).to be_an Array
+    end
+  end
+
+  context '#entry_antonyms_synonyms' do
+    let(:resp) { client.entry_antonyms_synonyms('vapid') }
+    it 'has both antonym and synonym properties' do
+      expect(resp.id).to eq('vapid')
+      entry = resp.lexical_entries[0].entries[0]
+      expect(entry.senses[0].antonyms).to be_an Array
+      expect(entry.senses[0].antonyms[0].id).to eq('lively')
+      expect(entry.senses[0].synonyms[0].id).to eq('insipid')
     end
   end
 end
