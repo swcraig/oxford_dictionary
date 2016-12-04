@@ -116,7 +116,7 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
       expect(resp.id).to eq('vapid')
       expect(resp.lexical_entries[0].entries).to be_empty
       expect(resp.lexical_entries[0].sentences).to be_an Array
-      expect(resp.lexical_entries[0].sentences[0]['sense_ids']).to be_an Array
+      expect(resp.lexical_entries[0].sentences[0].sense_ids).to be_an Array
     end
   end
 

@@ -11,5 +11,5 @@ class LexicalEntry
   attribute :entries, Array[Entry]
   attribute :pronunciations, Array[Pronunciation]
 
-  attribute :sentences, Array[Hash]
+  attribute :sentences, Array[OpenStruct]
 end

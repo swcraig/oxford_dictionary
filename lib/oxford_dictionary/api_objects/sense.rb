@@ -5,7 +5,7 @@ class Sense
   include Virtus.model
   attribute :id, String
   attribute :definitions, Array[String]
-  attribute :examples, Array[Hash]
+  attribute :examples, Array[OpenStruct]
   attribute :registers, Array[String]
 
   attribute :antonyms, Array[OpenStruct]
