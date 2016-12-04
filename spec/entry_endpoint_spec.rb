@@ -12,6 +12,10 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
     stub_get('entries/en/vapid/antonyms', 'entry_vapid_antonyms.json')
     stub_get('entries/en/vapid/synonyms', 'entry_vapid_synonyms.json')
     stub_get(
+      'entries/en/truth/translations=es',
+      'entry_truth_translations.json'
+    )
+    stub_get(
       'entries/en/ace/grammaticalFeatures=singular,past;lexical_category=noun',
       'entry_ace_singular_noun.json'
     )
@@ -146,6 +150,17 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
       expect(entry.senses[0].antonyms).to be_an Array
       expect(entry.senses[0].antonyms[0].id).to eq('lively')
       expect(entry.senses[0].synonyms[0].id).to eq('insipid')
+    end
+  end
+
+  context '#entry_translations' do
+    let(:resp) { client.entry_translations('truth') }
+    it 'has translation properties' do
+      expect(resp.id).to eq('truth')
+      expect(resp.language).to eq('en')
+      entry = resp.lexical_entries[0].entries[0]
+      expect(entry.senses[0].translations).to be_an Array
+      expect(entry.senses[0].translations[0].language).to eq('es')
     end
   end
 end

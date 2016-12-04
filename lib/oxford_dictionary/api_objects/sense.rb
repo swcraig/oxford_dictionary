@@ -10,4 +10,6 @@ class Sense
 
   attribute :antonyms, Array[OpenStruct]
   attribute :synonyms, Array[OpenStruct]
+
+  attribute :translations, Array[OpenStruct]
 end
