@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "matchString": "vapid",
+      "region": "gb",
+      "inflection_id": "vapid",
+      "matchType": "inflection",
+      "word": "vapid",
+      "id": "vapid"
+    }
+  ],
+  "metadata": {
+    "offset": 0,
+    "sourceLanguage": "en",
+    "limit": 5000,
+    "provider": "Oxford University Press",
+    "total": 1
+  }
+}

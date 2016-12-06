@@ -53,7 +53,7 @@ module OxfordDictionary
       end
 
       def entry_request(query, params)
-        EntryResponse.new(request(ENDPOINT, query, params))
+        EntryResponse.new(request(ENDPOINT, query, params)['results'][0])
       end
     end
   end
