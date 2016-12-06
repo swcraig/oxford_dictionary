@@ -1,9 +1,11 @@
 require 'oxford_dictionary/endpoints/entry_endpoint'
+require 'oxford_dictionary/endpoints/inflection_endpoint'
 
 module OxfordDictionary
   # The client object to interact with
   class Client
     include OxfordDictionary::Endpoints::EntryEndpoint
+    include OxfordDictionary::Endpoints::InflectionEndpoint
 
     attr_reader :app_id, :app_key
 

@@ -28,7 +28,6 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
 
   context '#entry without filters' do
     let(:resp) { client.entry('ace') }
-
     it 'is an entry request' do
       expect(resp.id).to eq('ace')
       expect(resp.language).to eq('en')
