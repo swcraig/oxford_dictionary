@@ -1,0 +1,65 @@
+{
+  "metadata": {
+    "limit": 5000,
+    "sourceLanguage": "en",
+    "total": 9,
+    "offset": 0,
+    "provider": "Oxford University Press"
+  },
+  "results": [
+    {
+      "matchType": "headword",
+      "matchString": "goal",
+      "word": "goal area",
+      "id": "goal_area"
+    },
+    {
+      "matchType": "headword",
+      "matchString": "goal",
+      "word": "goal cage",
+      "id": "goal_cage"
+    },
+    {
+      "matchType": "headword",
+      "matchString": "goal",
+      "word": "goalhanger",
+      "id": "goalhanger"
+    },
+    {
+      "matchType": "headword",
+      "matchString": "goal",
+      "word": "goalie",
+      "id": "goalie"
+    },
+    {
+      "matchType": "headword",
+      "matchString": "goal",
+      "word": "goal kick",
+      "id": "goal_kick"
+    },
+    {
+      "matchType": "headword",
+      "matchString": "goal",
+      "word": "goal line",
+      "id": "goal_line"
+    },
+    {
+      "matchType": "headword",
+      "matchString": "goal",
+      "word": "goalmouth",
+      "id": "goalmouth"
+    },
+    {
+      "matchType": "headword",
+      "matchString": "goal",
+      "word": "goal sneak",
+      "id": "goal_sneak"
+    },
+    {
+      "matchType": "variantForm",
+      "matchString": "goal_poacher",
+      "word": "poacher",
+      "id": "poacher"
+    }
+  ]
+}

@@ -9,6 +9,10 @@ module OxfordDictionary
 
     BASE = 'https://od-api.oxforddictionaries.com/api/v1'.freeze
     ACCEPT_TYPE = 'application/json'.freeze
+    # May be used by the wordlist endpoint
+    ADVANCED_FILTERS = [:exact, :exclude, :exclude_senses,
+                        :exclude_prime_senses, :limit, :offset,
+                        :prefix, :word_length].freeze
 
     def request(endpoint, q, params)
       url = build_url(endpoint, q, params)
@@ -28,8 +32,31 @@ module OxfordDictionary
       if params[:q]
         "#{url_start}#{search_endpoint_url(params)}".chomp('/')
       else
+        unless q
+          # The wordlist endpoint uses a slightly different url structure
+          return "#{url_start}/#{build_advanced_url(params)}".chomp('/')
+        end
         "#{url_start}/#{q}/#{finish_url(params)}".chomp('/')
       end
+    end
+
+    def build_advanced_url(params)
+      advanced_params = {}
+      params.each do |k, v|
+        if ADVANCED_FILTERS.include?(k)
+          params.delete(k)
+          advanced_params[k] = v
+        end
+      end
+      "#{create_query_string(params)}#{advanced_query(advanced_params)}"
+    end
+
+    def advanced_query(params)
+      unless params.empty?
+        params[:exact] || params[:exact] = false
+        return "?#{create_query_string(params, '&')}"
+      end
+      ''
     end
 
     # The search endpoint has a slightly different url structure
@@ -60,7 +87,22 @@ module OxfordDictionary
     end
 
     def options(v)
-      v.is_a?(Array) ? v.join(',') : v
+      if v.is_a?(Array)
+        hash_element?(v[0]) ? query_from_hash(v) : v.join(',')
+      else
+        v
+      end
+    end
+
+    def query_from_hash(hash)
+      query = ''
+      hash.each { |h| query += create_query_string(h) }
+      query
+    end
+
+    # The wordlist endpoint may nest filters
+    def hash_element?(element)
+      element.is_a?(Hash)
     end
   end
 end

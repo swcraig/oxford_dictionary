@@ -1,6 +1,7 @@
 require 'oxford_dictionary/endpoints/entry_endpoint'
 require 'oxford_dictionary/endpoints/inflection_endpoint'
 require 'oxford_dictionary/endpoints/search_endpoint'
+require 'oxford_dictionary/endpoints/wordlist_endpoint'
 
 module OxfordDictionary
   # The client object to interact with
@@ -8,6 +9,7 @@ module OxfordDictionary
     include OxfordDictionary::Endpoints::EntryEndpoint
     include OxfordDictionary::Endpoints::InflectionEndpoint
     include OxfordDictionary::Endpoints::SearchEndpoint
+    include OxfordDictionary::Endpoints::WordlistEndpoint
 
     attr_reader :app_id, :app_key
 

@@ -4,6 +4,7 @@ require 'oxford_dictionary/version'
 require 'oxford_dictionary/endpoints/entry_endpoint'
 require 'oxford_dictionary/endpoints/inflection_endpoint'
 require 'oxford_dictionary/endpoints/search_endpoint'
+require 'oxford_dictionary/endpoints/wordlist_endpoint'
 
 # Adds some aliasing
 module OxfordDictionary
