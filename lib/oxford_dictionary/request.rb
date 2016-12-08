@@ -1,6 +1,7 @@
 require 'httparty'
 require 'json'
 require 'plissken'
+require 'oxford_dictionary/error'
 
 module OxfordDictionary
   # Handles all of the actual API calls
@@ -17,7 +18,7 @@ module OxfordDictionary
     def request(endpoint, q, params)
       url = build_url(endpoint, q, params)
       resp = HTTParty.get(url, headers: request_headers)
-      raise resp.code unless resp.code == 200
+      raise(Error.new(resp), error_message(resp.body)) unless resp.code == 200
       JSON.parse(resp.body).to_snake_keys
     end
 
@@ -93,6 +94,10 @@ module OxfordDictionary
       query = ''
       hash.each { |h| query += create_query_string(h) }
       query
+    end
+
+    def error_message(response)
+      response.lines.last.chomp[3..-5]
     end
 
     # The wordlist endpoint may nest filters

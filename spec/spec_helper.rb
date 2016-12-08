@@ -13,10 +13,14 @@ def stub_get(path, fixture_name)
   headers = HEADERS
   stub_request(:get, api_url(path))
     .with(headers: headers)
-    .to_return(
-      status: 200,
-      body: fixture(fixture_name)
-    )
+    .to_return(status: 200, body: fixture(fixture_name))
+end
+
+def stub_error(path, fixture_name)
+  headers = HEADERS
+  stub_request(:get, api_url(path))
+    .with(headers: headers)
+    .to_return(status: 404, body: fixture(fixture_name))
 end
 
 def fixture_path(file = nil)

@@ -11,10 +11,7 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
     stub_get('entries/en/vapid/sentences', 'entry_vapid_sentences.json')
     stub_get('entries/en/vapid/antonyms', 'entry_vapid_antonyms.json')
     stub_get('entries/en/vapid/synonyms', 'entry_vapid_synonyms.json')
-    stub_get(
-      'entries/en/wordthatdoesnotexist',
-      'entry_error.json'
-    ).to_return(status: 404)
+    stub_error('entries/en/wordthatdoesnotexist', 'entry_error.txt')
     stub_get(
       'entries/en/truth/translations=es',
       'entry_truth_translations.json'
@@ -66,7 +63,8 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
 
   context '#entry with 404 error' do
     it 'raises a 404 error when not found' do
-      expect { client.entry('wordthatdoesnotexist') }.to raise_exception
+      expect { client.entry('wordthatdoesnotexist') }
+        .to raise_exception(OxfordDictionary::Error, /No entry available/)
     end
   end
 
