@@ -58,4 +58,12 @@ describe OxfordDictionary::Endpoints::WordlistEndpoint do
       expect(resp.results[1].id).to eq('goal_average')
     end
   end
+
+  context '#wordlist with too many filter arguments' do
+    arguments = %(Allusive Archaic Cant Dated Slang Rare)
+    it 'raises a 400 error' do
+      expect { client.wordlist(registers: arguments) }
+        .to raise_exception(OxfordDictionary::Error, /Do not use more/)
+    end
+  end
 end

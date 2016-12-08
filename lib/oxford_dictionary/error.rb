@@ -3,8 +3,8 @@ module OxfordDictionary
   class Error < StandardError
     attr_reader :code
 
-    def initialize(response)
-      @code = response.code
+    def initialize(code)
+      @code = code
     end
   end
 end

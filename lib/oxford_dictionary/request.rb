@@ -18,7 +18,9 @@ module OxfordDictionary
     def request(endpoint, q, params)
       url = build_url(endpoint, q, params)
       resp = HTTParty.get(url, headers: request_headers)
-      raise(Error.new(resp), error_message(resp.body)) unless resp.code == 200
+      unless resp.code == 200
+        raise(Error.new(resp.code), error_message(resp.body))
+      end
       JSON.parse(resp.body).to_snake_keys
     end
 
