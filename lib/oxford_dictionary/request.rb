@@ -16,13 +16,8 @@ module OxfordDictionary
 
     def request(endpoint, q, params)
       url = build_url(endpoint, q, params)
-      resp = HTTParty.get(
-        url,
-        headers:
-          {
-            'Accept' => ACCEPT_TYPE, 'app_id' => app_id, 'app_key' => app_key
-          }
-      )
+      resp = HTTParty.get(url, headers: request_headers)
+      raise resp.code unless resp.code == 200
       JSON.parse(resp.body).to_snake_keys
     end
 
@@ -103,6 +98,10 @@ module OxfordDictionary
     # The wordlist endpoint may nest filters
     def hash_element?(element)
       element.is_a?(Hash)
+    end
+
+    def request_headers
+      { 'Accept' => ACCEPT_TYPE, 'app_id' => app_id, 'app_key' => app_key }
     end
   end
 end
