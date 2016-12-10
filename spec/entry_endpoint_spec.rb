@@ -17,7 +17,7 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
       'entry_truth_translations.json'
     )
     stub_get(
-      'entries/en/ace/grammaticalFeatures=singular,past;lexical_category=noun',
+      'entries/en/ace/grammaticalFeatures=singular,past;lexicalCategory=noun',
       'entry_ace_singular_noun.json'
     )
     stub_get(
@@ -74,7 +74,7 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
     let(:resp_sing_noun) do
       client.entry(
         'ace',
-        grammaticalFeatures: %w(singular past), lexical_category: 'noun'
+        grammaticalFeatures: %w(singular past), lexicalCategory: 'noun'
       )
     end
 
@@ -88,8 +88,8 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
       expect(sense.id).to include('us')
     end
 
-    it 'returns a singular noun entry' do
-      expect(resp_sing_noun.lexical_entries.size).to eq(1)
+    it 'returns a singular past noun entry' do
+      expect(resp_sing_noun.lexical_entries.size).to eq(4)
     end
   end
 
