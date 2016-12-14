@@ -7,6 +7,7 @@ Gem::Specification.new do |spec|
   spec.name          = 'oxford_dictionary'
   spec.version       = OxfordDictionary::VERSION
   spec.authors       = ['swcraig']
+  spec.email         = ['coverless.info@gmail.com']
 
   spec.summary       = 'A wrapper for the Oxford Dictionary API'
   spec.description   = 'https://developer.oxforddictionaries.com/documentation'
