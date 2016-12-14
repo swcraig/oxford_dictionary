@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
 
   spec.summary       = 'A wrapper for the Oxford Dictionary API'
   spec.description   = 'https://developer.oxforddictionaries.com/documentation'
-  spec.homepage      = 'https://github.com'
+  spec.homepage      = 'https://github.com/swcraig/oxford-dictionary'
   spec.license       = 'MIT'
 
   spec.files = `git ls-files -z`.split("\x0").reject do |f|
