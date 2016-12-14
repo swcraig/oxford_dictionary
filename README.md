@@ -22,6 +22,10 @@ After registering for an API key, setup the client:
 
     entry = client.entry('vapid')
 
+    # Access the first entry
+    # Refer to the API documentation for the schema of the returned data structure
+    first_lexical_entry = entry.lexical_entries[0]
+
     # With some filters
     filters = { lexicalCategory: 'Verb', domains: 'Art'}
     client.entry('truth', filters)
@@ -39,6 +43,10 @@ After registering for an API key, setup the client:
 
     # Or only the pronunciations...
     the_noises = client.entry_pronunciations('knight')
+
+    # Or the translations (for Swahili in this example)
+    en_to_es = client.entry_translations('change', translations: 'sw')
+    # If no :translations filter is supplied, default is 'es'
 
     # Or some of the other documented API calls
     client.entry_sentences('scholar')
