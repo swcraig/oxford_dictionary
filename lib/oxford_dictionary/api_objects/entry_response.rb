@@ -6,7 +6,7 @@ class EntryResponse
   include Virtus.model
   attribute :id, String
   attribute :language, String
+  attribute :lexical_entries, Array[LexicalEntry]
   attribute :type, String
   attribute :word, String
-  attribute :lexical_entries, Array[LexicalEntry]
 end
