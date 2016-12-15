@@ -18,6 +18,9 @@ After registering for an API key, setup the client:
     client = OxfordDictionary.new(app_id: 'ID', app_key: 'SECRET')
 
 ### Usage Examples
+Some documentation on the different endpoint function calls can be found [here](http://rubydoc.info/gems/oxford_dictionary/OxfordDictionary/Endpoints)
+
+
 ###### Get the results for an entry
 
     entry = client.entry('vapid')
