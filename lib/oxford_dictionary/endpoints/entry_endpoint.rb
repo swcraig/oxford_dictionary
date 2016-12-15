@@ -52,6 +52,8 @@ module OxfordDictionary
         entry_request(query, params)
       end
 
+      private
+
       def entry_request(query, params)
         EntryResponse.new(request(ENDPOINT, query, params)['results'][0])
       end

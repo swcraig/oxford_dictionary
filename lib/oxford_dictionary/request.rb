@@ -24,6 +24,8 @@ module OxfordDictionary
       JSON.parse(resp.body).to_snake_keys
     end
 
+    private
+
     def build_url(endpoint, q, params)
       params[:lang] || params[:lang] = 'en'
       url_start = "#{BASE}/#{endpoint}/#{params[:lang]}"
@@ -98,6 +100,7 @@ module OxfordDictionary
       query
     end
 
+    # Remove <p> and </p> in error message
     def error_message(response)
       response.lines.last.chomp[3..-5]
     end
