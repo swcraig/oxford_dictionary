@@ -72,7 +72,7 @@ Some documentation on the different endpoint function calls can be found [here](
     search_results = client.search('condition', prefix: true)
 
 ###### A quick note on how to add filters to queries
-There isn't much argument checking at the moment.  Some endpoints do not accept filter arguments, refer to the API documentation to check for endpoints that accept filters.  
+There isn't much argument checking at the moment.  Some endpoints do not accept filter arguments, refer to the API documentation to check for endpoints that accept filters.
 
     # All endpoints accept the :lang filter.  This specifies which dictionary to use
     # If no argument is supplied, default is 'en'
@@ -89,13 +89,13 @@ Argument names need to be in camelCase, not snake_case. However, the objects ret
 
 ## Development
 
-After checking out the repo, run `bin/setup` to install dependencies.      
+After checking out the repo, run `bin/setup` to install dependencies.
 Run `bin/console` for an interactive prompt that will allow you to experiment.
 
 ## Contributing
 
-Bug reports and pull requests are more than welcome!   
-Please make tests for anything that is added.    
+Bug reports and pull requests are more than welcome!
+Please make tests for anything that is added.
 `bundle exec rake` will run rspec/rubocop.
 
 #### Pull Requests
