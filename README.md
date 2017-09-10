@@ -21,6 +21,8 @@ After registering for an API key, setup the client:
 ### Usage Examples
 Some documentation on the different endpoint function calls can be found [here](http://rubydoc.info/gems/oxford_dictionary/OxfordDictionary/Endpoints)
 
+This wrapper follows the schema laid out by the API quite closely. The data
+schema for the different API calls can be found [here](https://developer.oxforddictionaries.com/documentation).
 
 ###### Get the results for an entry
 
