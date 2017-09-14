@@ -1,5 +1,6 @@
 require 'httparty'
 require 'json'
+require 'net/http'
 require 'plissken'
 require 'oxford_dictionary/error'
 
@@ -9,6 +10,7 @@ module OxfordDictionary
     include HTTParty
 
     BASE = 'https://od-api.oxforddictionaries.com/api/v1'.freeze
+    HTTP_OK = '200'.freeze
     ACCEPT_TYPE = 'application/json'.freeze
     # May be used by the wordlist endpoint
     ADVANCED_FILTERS = [:exact, :exclude, :exclude_senses,
@@ -16,15 +18,22 @@ module OxfordDictionary
                         :prefix, :word_length].freeze
 
     def request(endpoint, q, params)
-      url = build_url(endpoint, q, params)
-      resp = HTTParty.get(url, headers: request_headers)
-      unless resp.code == 200
-        raise(Error.new(resp.code), error_message(resp.body))
+      url = URI(build_url(endpoint, q, params))
+      response = Net::HTTP.start(url.host, url.port, use_ssl: true) do |http|
+        request = build_get_request(url)
+        http.request(request)
       end
-      JSON.parse(resp.body).to_snake_keys
+      parse_body_or_raise(response)
     end
 
     private
+
+    def parse_body_or_raise(response)
+      unless response.code == HTTP_OK
+        raise(Error.new(response.code), error_message(response.body))
+      end
+      JSON.parse(response.body).to_snake_keys
+    end
 
     def build_url(endpoint, q, params)
       params[:lang] || params[:lang] = 'en'
@@ -110,8 +119,12 @@ module OxfordDictionary
       element.is_a?(Hash)
     end
 
-    def request_headers
-      { 'Accept' => ACCEPT_TYPE, 'app_id' => app_id, 'app_key' => app_key }
+    def build_get_request(url)
+      request = Net::HTTP::Get.new(url)
+      request['Accept'] = ACCEPT_TYPE
+      request['app_id'] = app_id
+      request['app_key'] = app_key
+      request
     end
   end
 end
