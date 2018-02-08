@@ -14,10 +14,10 @@ Ruby wrapper to consume the [Oxford Dictionary API](https://developer.oxforddict
     require 'oxford_dictionary'
 
 After registering for an API key, setup the client:
-
-    client = OxfordDictionary::Client.new(app_id: 'ID', app_key: 'SECRET')
-    client = OxfordDictionary.new(app_id: 'ID', app_key: 'SECRET')
-
+```ruby
+client = OxfordDictionary::Client.new(app_id: 'ID', app_key: 'SECRET')
+client = OxfordDictionary.new(app_id: 'ID', app_key: 'SECRET')
+```
 ### Usage Examples
 Some documentation on the different endpoint function calls can be found [here](http://rubydoc.info/gems/oxford_dictionary/OxfordDictionary/Endpoints)
 
@@ -25,67 +25,71 @@ This wrapper follows the schema laid out by the API quite closely. The data
 schema for the different API calls can be found [here](https://developer.oxforddictionaries.com/documentation).
 
 ###### Get the results for an entry
+```ruby
+entry = client.entry('vapid')
 
-    entry = client.entry('vapid')
+# Access the first entry
+# Refer to the API documentation for the schema of the returned data structure
+first_lexical_entry = entry.lexical_entries[0]
 
-    # Access the first entry
-    # Refer to the API documentation for the schema of the returned data structure
-    first_lexical_entry = entry.lexical_entries[0]
+# With some filters
+filters = { lexicalCategory: 'Verb', domains: 'Art'}
+client.entry('truth', filters)
 
-    # With some filters
-    filters = { lexicalCategory: 'Verb', domains: 'Art'}
-    client.entry('truth', filters)
+# Or do them "inline"
+client.entry('truth', lexicalCategory: 'Verb', domains: 'Art')
 
-    # Or do them "inline"
-    client.entry('truth', lexicalCategory: 'Verb', domains: 'Art')
-
-    # From a dictionary of a specific language (default is 'en')
-    client.entry('ace', lang: 'es')
+# From a dictionary of a specific language (default is 'en')
+client.entry('ace', lang: 'es')
+```
 
 ###### Or return some subset of information
+```ruby
+# Like just the examples
+examples = client.entry_examples('explain')
 
-    # Like just the examples
-    examples = client.entry_examples('explain')
+# Or only the pronunciations...
+the_noises = client.entry_pronunciations('knight')
 
-    # Or only the pronunciations...
-    the_noises = client.entry_pronunciations('knight')
+# Or the translations (for Swahili in this example)
+en_to_es = client.entry_translations('change', translations: 'sw')
+# If no :translations filter is supplied, default is 'es'
 
-    # Or the translations (for Swahili in this example)
-    en_to_es = client.entry_translations('change', translations: 'sw')
-    # If no :translations filter is supplied, default is 'es'
+# Or some of the other documented API calls
+client.entry_sentences('scholar')
+client.entry_definitions('correct')
+client.entry_antonyms_synonyms('monotonous')
+# Etc...
 
-    # Or some of the other documented API calls
-    client.entry_sentences('scholar')
-    client.entry_definitions('correct')
-    client.entry_antonyms_synonyms('monotonous')
-    # Etc...
-
-    # Generally the method names follow the documented API closely
+# Generally the method names follow the documented API closely
+```
 
 ###### Other endpoint calls
+```ruby
+# Inflections of a word
+inflections = client.inflection('changed')
 
-    # Inflections of a word
-    inflections = client.inflection('changed')
+# Wordlist results (based on categorys, filters, etc...)
+related = client.wordlist(lexicalCategory: 'Noun', word_length: '>5,<10')
 
-    # Wordlist results (based on categorys, filters, etc...)
-    related = client.wordlist(lexicalCategory: 'Noun', word_length: '>5,<10')
-
-    # Or the search endpoint
-    search_results = client.search('condition', prefix: true)
+# Or the search endpoint
+search_results = client.search('condition', prefix: true)
+```
 
 ###### A quick note on how to add filters to queries
 There isn't much argument checking at the moment.  Some endpoints do not accept filter arguments, refer to the API documentation to check for endpoints that accept filters.
+```ruby
+# All endpoints accept the :lang filter.  This specifies which dictionary to use
+# If no argument is supplied, default is 'en'
+filters = { lang: 'es' }
 
-    # All endpoints accept the :lang filter.  This specifies which dictionary to use
-    # If no argument is supplied, default is 'en'
-    filters = { lang: 'es' }
+# To use multiple values on a single filter, make it an array
+filters = { lexicalCategory: ['Noun', 'Verb'] }
 
-    # To use multiple values on a single filter, make it an array
-    filters = { lexicalCategory: ['Noun', 'Verb'] }
-
-    # The wordlist endpoint specifically may include "nested" filters
-    # These filters (exclude, exclude_senses, etc...) require arrays
-    filters = { exclude: [domains: %w(sport art)] }
+# The wordlist endpoint specifically may include "nested" filters
+# These filters (exclude, exclude_senses, etc...) require arrays
+filters = { exclude: [domains: %w(sport art)] }
+```
 
 Argument names need to be in camelCase, not snake_case. However, the objects returned from API calls use snake_case attributes.
 
