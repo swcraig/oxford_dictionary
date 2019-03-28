@@ -72,6 +72,9 @@ inflections = client.inflection('changed')
 # Wordlist results (based on categorys, filters, etc...)
 related = client.wordlist(lexicalCategory: 'Noun', word_length: '>5,<10')
 
+# Word frequency results
+related = client.word_frequency(lemma: 'spring', lexicalCategory: 'Noun')
+
 # Or the search endpoint
 search_results = client.search('condition', prefix: true)
 ```

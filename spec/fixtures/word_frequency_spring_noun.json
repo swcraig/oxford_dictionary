@@ -1,0 +1,18 @@
+{
+    "metadata": {
+        "language": "en",
+        "options": {
+            "corpus": "nmc",
+            "lemma": "spring",
+            "lexicalCategory": "noun"
+        },
+        "provider": "Oxford University Press"
+    },
+    "result": {
+        "frequency": 454602,
+        "lemma": "spring",
+        "lexicalCategory": "noun",
+        "matchCount": 5,
+        "normalizedFrequency": 49.8713275659054
+    }
+}

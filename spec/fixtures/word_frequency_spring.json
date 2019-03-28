@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "language": "en",
+    "options": {
+      "corpus": "nmc",
+      "lemma": "spring"
+    },
+    "provider": "Oxford University Press"
+  },
+  "result": {
+    "frequency": 522812,
+    "lemma": "spring",
+    "matchCount": 37,
+    "normalizedFrequency": 57.3541878552803
+  }
+}
