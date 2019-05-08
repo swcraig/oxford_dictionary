@@ -6,6 +6,8 @@ module OxfordDictionary
     # Interface to '/wordlist' endpoint
     module WordlistEndpoint
       include OxfordDictionary::Request
+      extend Gem::Deprecate
+
       ENDPOINT = 'wordlist'.freeze
       ADVANCED_FILTERS = [:exact, :exclude, :exclude_senses,
                           :exclude_prime_senses, :limit, :offset,
@@ -18,6 +20,7 @@ module OxfordDictionary
         end
         ListResponse.new(request(ENDPOINT, nil, params))
       end
+      deprecate :wordlist, :none, 2019, 6
 
       private
 
