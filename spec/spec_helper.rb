@@ -33,7 +33,7 @@ def fixture(file)
 end
 
 def api_url(path)
-  "#{OxfordDictionary::Request::BASE}/#{path}"
+  "#{OxfordDictionary::DeprecatedRequest::BASE}/#{path}"
 end
 
 RSpec.configure do |config|

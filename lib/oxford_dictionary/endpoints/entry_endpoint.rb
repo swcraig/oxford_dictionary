@@ -1,11 +1,11 @@
-require 'oxford_dictionary/request'
+require 'oxford_dictionary/deprecated_request'
 require 'oxford_dictionary/api_objects/entry_response'
 
 module OxfordDictionary
   module Endpoints
     # Interface to '/entries' endpoint
     module EntryEndpoint
-      include OxfordDictionary::Request
+      include OxfordDictionary::DeprecatedRequest
       ENDPOINT = 'entries'.freeze
 
       def entry(query, params = {})
