@@ -1,12 +1,12 @@
-require 'oxford_dictionary/request'
+require 'oxford_dictionary/deprecated_request'
 require 'oxford_dictionary/api_objects/list_response'
 
 module OxfordDictionary
   module Endpoints
     # Interface to '/wordlist' endpoint
     module WordlistEndpoint
-      include OxfordDictionary::Request
       extend Gem::Deprecate
+      include OxfordDictionary::DeprecatedRequest
 
       ENDPOINT = 'wordlist'.freeze
       ADVANCED_FILTERS = [:exact, :exclude, :exclude_senses,

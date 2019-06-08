@@ -1,11 +1,11 @@
-require 'oxford_dictionary/request'
+require 'oxford_dictionary/deprecated_request'
 require 'oxford_dictionary/api_objects/entry_response'
 
 module OxfordDictionary
   module Endpoints
     # Interface to '/inflections' endpoint
     module InflectionEndpoint
-      include OxfordDictionary::Request
+      include OxfordDictionary::DeprecatedRequest
       ENDPOINT = 'inflections'.freeze
 
       def inflection(query, params = {})

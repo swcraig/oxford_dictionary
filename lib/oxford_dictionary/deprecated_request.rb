@@ -5,7 +5,7 @@ require 'oxford_dictionary/error'
 
 module OxfordDictionary
   # Handles all of the actual API calls
-  module Request
+  module DeprecatedRequest
     BASE = 'https://od-api.oxforddictionaries.com/api/v1'.freeze
     HTTP_OK = '200'.freeze
     ACCEPT_TYPE = 'application/json'.freeze
