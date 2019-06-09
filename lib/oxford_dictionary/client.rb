@@ -21,5 +21,12 @@ module OxfordDictionary
         instance_variable_set("@#{key}", value)
       end
     end
+
+    private
+
+    def request_client
+      @request_client ||=
+        OxfordDictionary::Request.new(app_id: @app_id, app_key: @app_key)
+    end
   end
 end
