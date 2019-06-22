@@ -3,6 +3,7 @@ require 'oxford_dictionary/endpoints/inflection_endpoint'
 require 'oxford_dictionary/endpoints/search_endpoint'
 require 'oxford_dictionary/endpoints/wordlist_endpoint'
 
+require 'oxford_dictionary/endpoints/entries'
 require 'oxford_dictionary/endpoints/lemmas'
 
 module OxfordDictionary
