@@ -3,6 +3,8 @@ require 'oxford_dictionary/endpoints/inflection_endpoint'
 require 'oxford_dictionary/endpoints/search_endpoint'
 require 'oxford_dictionary/endpoints/wordlist_endpoint'
 
+require 'oxford_dictionary/endpoints/lemmas'
+
 module OxfordDictionary
   # The client object to interact with
   class Client
@@ -49,7 +51,16 @@ module OxfordDictionary
         entry_snake_case(word: word, dataset: dataset, params: params)
     end
 
+    def lemma(word:, language:, params: {})
+      lemma_endpoint.lemma(word: word, language: language, params: params)
+    end
+
     private
+
+    def lemma_endpoint
+      @lemma_endpoint ||=
+        OxfordDictionary::Endpoints::Lemmas.new(request_client: request_client)
+    end
 
     def entry_endpoint
       @entry_endpoint ||=

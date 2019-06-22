@@ -3,6 +3,7 @@ require 'spec_helper'
 RSpec.describe OxfordDictionary::Client do
   let(:app_id) { 'ID' }
   let(:app_key) { 'KEY' }
+  let(:client) { described_class.new(app_id: app_id, app_key: app_key) }
 
   describe '#new' do
     it 'requires an argument' do
@@ -22,7 +23,6 @@ RSpec.describe OxfordDictionary::Client do
   end
 
   describe '#entry' do
-    let(:client) { described_class.new(app_id: app_id, app_key: app_key) }
     subject { client.entry(args) }
 
     context 'when the argument is a Hash' do
@@ -35,6 +35,21 @@ RSpec.describe OxfordDictionary::Client do
 
         subject
       end
+    end
+  end
+
+  describe '#lemma' do
+    subject { client.lemma(word: word, language: language, params: params) }
+    let(:word) { 'ace' }
+    let(:language) { 'en' }
+    let(:params) { {} }
+
+    it 'calls the Lemmas endpoint with correct arguments' do
+      expect_any_instance_of(OxfordDictionary::Endpoints::Lemmas).
+        to receive(:lemma).
+        with(word: word, language: language, params: params)
+
+      subject
     end
   end
 
