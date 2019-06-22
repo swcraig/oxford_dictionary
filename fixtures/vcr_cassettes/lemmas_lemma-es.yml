@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://od-api.oxforddictionaries.com/api/v2/lemmas/es/fuego
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - od-api.oxforddictionaries.com
+      App-Id:
+      - APP_ID
+      App-Key:
+      - APP_KEY
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Api-Version:
+      - v2
+      Code-Version:
+      - v2.3.2-g02aa52c
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Sat, 22 Jun 2019 23:43:20 GMT
+      Server:
+      - openresty/1.13.6.2
+      Content-Length:
+      - '1429'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "metadata": {
+                "provider": "Oxford University Press"
+            },
+            "results": [
+                {
+                    "id": "fuego",
+                    "language": "es",
+                    "lexicalEntries": [
+                        {
+                            "grammaticalFeatures": [
+                                {
+                                    "id": "masculine",
+                                    "text": "Masculine",
+                                    "type": "Gender"
+                                }
+                            ],
+                            "inflectionOf": [
+                                {
+                                    "id": "fuego",
+                                    "text": "fuego"
+                                }
+                            ],
+                            "language": "es",
+                            "lexicalCategory": {
+                                "id": "noun",
+                                "text": "Noun"
+                            },
+                            "text": "fuego"
+                        },
+                        {
+                            "inflectionOf": [
+                                {
+                                    "id": "fuego",
+                                    "text": "fuego"
+                                }
+                            ],
+                            "language": "es",
+                            "lexicalCategory": {
+                                "id": "interjection",
+                                "text": "Interjection"
+                            },
+                            "text": "fuego"
+                        }
+                    ],
+                    "word": "fuego"
+                }
+            ]
+        }
+    http_version: 
+  recorded_at: Sat, 22 Jun 2019 23:43:20 GMT
+recorded_with: VCR 4.0.0
