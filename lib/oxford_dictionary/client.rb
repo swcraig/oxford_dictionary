@@ -43,6 +43,12 @@ module OxfordDictionary
       end
     end
 
+    def entry_snake_case(word:, dataset:, params: {})
+      warn 'Client#entry_snake_case is DEPRECATED. Use Client#entry instead.'
+      entry_endpoint.
+        entry_snake_case(word: word, dataset: dataset, params: params)
+    end
+
     private
 
     def entry_endpoint
