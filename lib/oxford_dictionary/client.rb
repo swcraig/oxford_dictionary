@@ -22,7 +22,33 @@ module OxfordDictionary
       end
     end
 
+    def entry(*args)
+      if args.first.is_a?(Hash)
+        args = args.first
+          entry_endpoint.entry(
+            word: args[:word],
+            dataset: args[:dataset],
+            params: args[:params]
+          )
+      else
+        warn '''
+          The V1 interface for this library is DEPRECATED and will become
+          non-functional on June 30, 2019. Use the new V2 interface for this
+          method instead. Reference github.com/swcraig/oxford-dictionary/pull/8
+          for more information. Specifically check out
+          OxfordDictionary::Endpoints::Entries#entry for the new interface.
+        '''
+        # Support V1 behaviour
+        super(*args)
+      end
+    end
+
     private
+
+    def entry_endpoint
+      @entry_endpoint ||=
+        OxfordDictionary::Endpoints::Entries.new(request_client: request_client)
+    end
 
     def request_client
       @request_client ||=
