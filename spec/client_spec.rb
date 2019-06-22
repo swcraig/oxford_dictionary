@@ -37,4 +37,22 @@ RSpec.describe OxfordDictionary::Client do
       end
     end
   end
+
+  describe '#entry_snake_case' do
+    let(:client) { described_class.new(app_id: app_id, app_key: app_key) }
+    subject do
+      client.entry_snake_case(word: word, dataset: dataset, params: params)
+    end
+
+    let(:word) { 'ace' }
+    let(:params) { {} }
+    let(:dataset) { 'en-gb' }
+
+    it 'calls Entries#entry_snake_case' do
+      expect_any_instance_of(OxfordDictionary::Endpoints::Entries).
+        to receive(:entry_snake_case).
+        with(word: word, dataset: dataset, params: params)
+      subject
+    end
+  end
 end
