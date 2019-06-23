@@ -13,16 +13,43 @@ module OxfordDictionary
       end
 
       def entry_definitions(query, params = {})
+        warn '''
+        Client#entry_defintions is DEPRECATED and will become non-functional
+        on June 30, 2019. Use Client#entry instead. Reference
+        https://github.com/swcraig/oxford-dictionary/pull/8 for more
+        information. Check out OxfordDictionary::Endpoints::Entries for the
+        interface to use. Specifically use it with
+        params: { fields: \'definitions\' }
+        '''
+
         params[:end] = 'definitions'
         entry_request(query, params)
       end
 
       def entry_examples(query, params = {})
+        warn '''
+        Client#entry_examples is DEPRECATED and will become non-functional
+        on June 30, 2019. Use Client#entry instead. Reference
+        https://github.com/swcraig/oxford-dictionary/pull/8 for more
+        information. Check out OxfordDictionary::Endpoints::Entries for the
+        interface to use. Specifically use it with
+        params: { fields: \'examples\' }
+        '''
+
         params[:end] = 'examples'
         entry_request(query, params)
       end
 
       def entry_pronunciations(query, params = {})
+        warn '''
+        Client#entry_pronunciations is DEPRECATED and will become non-functional
+        on June 30, 2019. Use Client#entry instead. Reference
+        https://github.com/swcraig/oxford-dictionary/pull/8 for more
+        information. Check out OxfordDictionary::Endpoints::Entries for the
+        interface to use. Specifically use it with
+        params: { fields: \'pronunciations\' }
+        '''
+
         params[:end] = 'pronunciations'
         entry_request(query, params)
       end
