@@ -6,13 +6,8 @@ module OxfordDictionary
       ENDPOINT = 'translations'.freeze
 
       def translation(word:, source_language:, target_language:, params: {})
-        query_string =
-          "#{ENDPOINT}/#{source_language}/#{target_language}/#{word}"
-        uri = URI(query_string)
-
-        unless params.empty?
-          uri.query = URI.encode_www_form(params)
-        end
+        path = "#{ENDPOINT}/#{source_language}/#{target_language}/#{word}"
+        uri = request_uri(path: path, params: params)
 
         response = @request_client.get(uri: uri)
         deserialize.call(response.body)

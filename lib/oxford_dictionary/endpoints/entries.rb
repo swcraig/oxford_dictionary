@@ -7,24 +7,16 @@ module OxfordDictionary
       ENDPOINT = 'entries'.freeze
 
       def entry(word:, dataset:, params: {})
-        query_string = "#{ENDPOINT}/#{dataset}/#{word}"
-        uri = URI(query_string)
-
-        unless params.empty?
-          uri.query = URI.encode_www_form(params)
-        end
+        path = "#{ENDPOINT}/#{dataset}/#{word}"
+        uri = request_uri(path: path, params: params)
 
         response = @request_client.get(uri: uri)
         deserialize.call(response.body)
       end
 
       def entry_snake_case(word:, dataset:, params: {})
-        query_string = "#{ENDPOINT}/#{dataset}/#{word}"
-        uri = URI(query_string)
-
-        unless params.empty?
-          uri.query = URI.encode_www_form(params)
-        end
+        path = "#{ENDPOINT}/#{dataset}/#{word}"
+        uri = request_uri(path: path, params: params)
 
         response = @request_client.get(uri: uri)
         snake_keys = JSON.parse(response.body).to_snake_keys

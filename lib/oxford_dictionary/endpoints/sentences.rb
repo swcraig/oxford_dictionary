@@ -6,12 +6,8 @@ module OxfordDictionary
       ENDPOINT = 'sentences'.freeze
 
       def sentence(word:, language:, params: {})
-        query_string = "#{ENDPOINT}/#{language}/#{word}"
-        uri = URI(query_string)
-
-        unless params.empty?
-          uri.query = URI.encode_www_form(params)
-        end
+        path = "#{ENDPOINT}/#{language}/#{word}"
+        uri = request_uri(path: path, params: params)
 
         response = @request_client.get(uri: uri)
         deserialize.call(response.body)
