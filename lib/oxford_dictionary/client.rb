@@ -8,6 +8,7 @@ require 'oxford_dictionary/endpoints/lemmas'
 require 'oxford_dictionary/endpoints/translations'
 require 'oxford_dictionary/endpoints/sentences'
 require 'oxford_dictionary/endpoints/thesaurus'
+require 'oxford_dictionary/endpoints/search'
 
 module OxfordDictionary
   # The client object to interact with
@@ -80,6 +81,36 @@ module OxfordDictionary
       )
     end
 
+    def search(*args)
+      if args.first.is_a?(Hash)
+        args = args.first
+        search_endpoint.search(language: args[:language], params: args[:params])
+      else
+        warn '''
+          Client#search without parameters is DEPRECATED.
+          Using the method without named parameters will become
+          non-functional on June 30, 2019. Use the new V2 interface for this
+          method instead. Reference github.com/swcraig/oxford-dictionary/pull/15
+          for more information. Specifically check out
+          OxfordDictionary::Endpoints::Search#search for the new interface.
+        '''
+        if args[1].is_a?(Hash) && args[1][:translations]
+          super(args[0], translations: args[1][:translations])
+        else
+          super(*args)
+        end
+      end
+    end
+
+    def search_translation(source_language:, target_language:, params: {})
+      search_endpoint.search_translation(
+        source_language: source_language,
+        target_language: target_language,
+        params: params
+      )
+    end
+
+
     private
 
     def lemma_endpoint
@@ -100,6 +131,12 @@ module OxfordDictionary
 
     def sentence_endpoint
       @sentence_endpoint ||= OxfordDictionary::Endpoints::Sentences.new(
+        request_client: request_client
+      )
+    end
+
+    def search_endpoint
+      @search_endpoint ||= OxfordDictionary::Endpoints::Search.new(
         request_client: request_client
       )
     end

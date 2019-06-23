@@ -109,6 +109,43 @@ RSpec.describe OxfordDictionary::Client do
     end
   end
 
+  describe '#search' do
+    subject { client.search(language: language, params: params) }
+    let(:language) { 'en' }
+    let(:params) { { q: 'an' } }
+
+    it 'calls the Search endpoint with correct arguments' do
+      expect_any_instance_of(OxfordDictionary::Endpoints::Search).
+        to receive(:search).
+        with(language: language, params: params)
+
+      subject
+    end
+  end
+
+  describe '#search_translation' do
+    subject do
+      client.search_translation(
+        source_language: source_language,
+        target_language: target_language,
+        params: params
+      )
+    end
+    let(:source_language) { 'en' }
+    let(:target_language) { 'es' }
+    let(:params) { {} }
+
+    it 'calls the Search endpoint with correct arguments' do
+      expect_any_instance_of(OxfordDictionary::Endpoints::Search).
+        to receive(:search_translation).
+        with(source_language: source_language,
+             target_language: target_language,
+             params: params)
+
+      subject
+    end
+  end
+
   describe '#entry_snake_case' do
     let(:client) { described_class.new(app_id: app_id, app_key: app_key) }
     subject do
