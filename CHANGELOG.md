@@ -1,5 +1,10 @@
 ## OxfordDictionary master (unreleased)
 
+## OxfordDictionary 1.2.0 (2019-06-22)
+
+- Add V2 lemmas support
+  [\#10](https://github.com/swcraig/oxford-dictionary/pull/10)
+
 ## OxfordDictionary 1.1.0 (2019-06-22)
 
 - Add V2 entries support
