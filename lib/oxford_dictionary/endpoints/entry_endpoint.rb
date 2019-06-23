@@ -48,6 +48,13 @@ module OxfordDictionary
       end
 
       def entry_translations(query, params = {})
+        warn '''
+        Client#entry_translations is DEPRECATED and will become non-functional
+        on June 30, 2019. Use Client#translation instead. Reference
+        https://github.com/swcraig/oxford-dictionary/pull/12 for more
+        information. Check out OxfordDictionary::Endpoints::Translations for the
+        interface to use.
+        '''
         params.key?(:translations) || params[:translations] = 'es'
         entry_request(query, params)
       end
