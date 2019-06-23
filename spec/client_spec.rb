@@ -79,6 +79,21 @@ RSpec.describe OxfordDictionary::Client do
     end
   end
 
+  describe '#sentence' do
+    subject { client.sentence(word: word, language: language, params: params) }
+    let(:word) { 'ace' }
+    let(:language) { 'en' }
+    let(:params) { {} }
+
+    it 'calls the Sentences endpoint with correct arguments' do
+      expect_any_instance_of(OxfordDictionary::Endpoints::Sentences).
+        to receive(:sentence).
+        with(word: word, language: language, params: params)
+
+      subject
+    end
+  end
+
   describe '#entry_snake_case' do
     let(:client) { described_class.new(app_id: app_id, app_key: app_key) }
     subject do
