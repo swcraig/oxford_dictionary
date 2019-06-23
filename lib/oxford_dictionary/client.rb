@@ -28,11 +28,11 @@ module OxfordDictionary
     def entry(*args)
       if args.first.is_a?(Hash)
         args = args.first
-          entry_endpoint.entry(
-            word: args[:word],
-            dataset: args[:dataset],
-            params: args[:params]
-          )
+        entry_endpoint.entry(
+          word: args[:word],
+          dataset: args[:dataset],
+          params: args[:params]
+        )
       else
         warn '''
           The V1 interface for this library is DEPRECATED and will become
