@@ -1,5 +1,16 @@
 ## OxfordDictionary master (unreleased)
 
+## OxfordDictionary 1.3.0 (2019-06-22)
+
+- Add V2 translations support
+  [\#10](https://github.com/swcraig/oxford-dictionary/pull/12)
+- Add V2 sentences support
+  [\#10](https://github.com/swcraig/oxford-dictionary/pull/13)
+- Add V2 thesaurus support
+  [\#10](https://github.com/swcraig/oxford-dictionary/pull/14)
+- Add V2 search support
+  [\#10](https://github.com/swcraig/oxford-dictionary/pull/15)
+
 ## OxfordDictionary 1.2.0 (2019-06-22)
 
 - Add V2 lemmas support
