@@ -28,6 +28,14 @@ module OxfordDictionary
       end
 
       def entry_sentences(query, params = {})
+        warn '''
+        Client#entry_sentences is DEPRECATED and will become non-functional
+        on June 30, 2019. Use Client#sentence instead. Reference
+        https://github.com/swcraig/oxford-dictionary/pull/13 for more
+        information. Check out OxfordDictionary::Endpoints::Sentences for the
+        interface to use.
+        '''
+
         params[:end] = 'sentences'
         entry_request(query, params)
       end
