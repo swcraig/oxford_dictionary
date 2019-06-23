@@ -16,7 +16,7 @@ RSpec.describe OxfordDictionary::Endpoints::Thesaurus do
   let(:language) { 'en' }
   let(:params) { { fields: 'synonyms,antonyms' } }
 
-  # The sentences endpoint is only avaiable to the paid tier
+  # The thesaurus endpoint is only avaiable to the paid tier
   # If someone with a paid tier account would like to contribute, please
   # feel free remove this double (and the stub in the tests), uncomment the
   # sections that run VCR against the live endpoint, and PR the resulting files
@@ -37,7 +37,7 @@ RSpec.describe OxfordDictionary::Endpoints::Thesaurus do
 
       subject
 
-      # VCR.use_cassette('sentences#sentence') do
+      # VCR.use_cassette('thesaurus#thesaurus') do
       #   response = subject
       #   expect(response).to be_an(OpenStruct)
       #   expect(response.results.first.id).to eq(word)
