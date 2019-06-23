@@ -41,16 +41,43 @@ module OxfordDictionary
       end
 
       def entry_antonyms(query, params = {})
+        warn '''
+        Client#entry_antonyms is DEPRECATED and will become non-functional
+        on June 30, 2019. Use Client#thesaurus instead. Reference
+        https://github.com/swcraig/oxford-dictionary/pull/13 for more
+        information. Check out OxfordDictionary::Endpoints::Thesaurus for the
+        interface to use. Specifically use it with
+        params: { fields: \'antonyms\' }
+        '''
+
         params[:end] = 'antonyms'
         entry_request(query, params)
       end
 
       def entry_synonyms(query, params = {})
+        warn '''
+        Client#entry_synonyms is DEPRECATED and will become non-functional
+        on June 30, 2019. Use Client#thesaurus instead. Reference
+        https://github.com/swcraig/oxford-dictionary/pull/13 for more
+        information. Check out OxfordDictionary::Endpoints::Thesaurus for the
+        interface to use. Specifically use it with
+        params: { fields: \'synonyms\' }
+        '''
+
         params[:end] = 'synonyms'
         entry_request(query, params)
       end
 
       def entry_antonyms_synonyms(query, params = {})
+        warn '''
+        Client#entry_antonyms_synonyms is DEPRECATED and will be non-functional
+        on June 30, 2019. Use Client#thesaurus instead. Reference
+        https://github.com/swcraig/oxford-dictionary/pull/14 for more
+        information. Check out OxfordDictionary::Endpoints::Thesaurus for the
+        interface to use. Specifically use it with
+        params: { fields: \'synonyms,antonyms\' }
+        '''
+
         params[:end] = 'synonyms;antonyms'
         entry_request(query, params)
       end
