@@ -7,6 +7,7 @@ require 'oxford_dictionary/endpoints/entries'
 require 'oxford_dictionary/endpoints/lemmas'
 require 'oxford_dictionary/endpoints/translations'
 require 'oxford_dictionary/endpoints/sentences'
+require 'oxford_dictionary/endpoints/thesaurus'
 
 module OxfordDictionary
   # The client object to interact with
@@ -71,6 +72,14 @@ module OxfordDictionary
       sentence_endpoint.sentence(word: word, language: language, params: params)
     end
 
+    def thesaurus(word:, language:, params: {})
+      thesaurus_endpoint.thesaurus(
+        word: word,
+        language: language,
+        params: params
+      )
+    end
+
     private
 
     def lemma_endpoint
@@ -91,6 +100,12 @@ module OxfordDictionary
 
     def sentence_endpoint
       @sentence_endpoint ||= OxfordDictionary::Endpoints::Sentences.new(
+        request_client: request_client
+      )
+    end
+
+    def thesaurus_endpoint
+      @thesaurus_endpoint ||= OxfordDictionary::Endpoints::Thesaurus.new(
         request_client: request_client
       )
     end
