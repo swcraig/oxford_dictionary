@@ -1,13 +1,9 @@
-require 'oxford_dictionary/deserialize'
+require 'oxford_dictionary/endpoints/endpoint'
 
 module OxfordDictionary
   module Endpoints
-    class Translations
+    class Translations < Endpoint
       ENDPOINT = 'translations'.freeze
-
-      def initialize(request_client:)
-        @request_client = request_client
-      end
 
       def translation(word:, source_language:, target_language:, params: {})
         query_string =
@@ -20,12 +16,6 @@ module OxfordDictionary
 
         response = @request_client.get(uri: uri)
         deserialize.call(response.body)
-      end
-
-      private
-
-      def deserialize
-        @deserialize ||= OxfordDictionary::Deserialize.new
       end
     end
   end

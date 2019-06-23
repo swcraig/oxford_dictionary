@@ -1,14 +1,10 @@
-require 'oxford_dictionary/deserialize'
+require 'oxford_dictionary/endpoints/endpoint'
 require 'plissken'
 
 module OxfordDictionary
   module Endpoints
-    class Entries
+    class Entries < Endpoint
       ENDPOINT = 'entries'.freeze
-
-      def initialize(request_client:)
-        @request_client = request_client
-      end
 
       def entry(word:, dataset:, params: {})
         query_string = "#{ENDPOINT}/#{dataset}/#{word}"
@@ -33,12 +29,6 @@ module OxfordDictionary
         response = @request_client.get(uri: uri)
         snake_keys = JSON.parse(response.body).to_snake_keys
         deserialize.call(JSON.generate(snake_keys))
-      end
-
-      private
-
-      def deserialize
-        @deserialize ||= OxfordDictionary::Deserialize.new
       end
     end
   end
