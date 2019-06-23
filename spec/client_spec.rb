@@ -53,6 +53,32 @@ RSpec.describe OxfordDictionary::Client do
     end
   end
 
+  describe '#translation' do
+    subject do
+      client.translation(
+        word: word,
+        source_language: source_language,
+        target_language: target_language,
+        params: params)
+    end
+
+    let(:word) { 'ace' }
+    let(:source_language) { 'en' }
+    let(:target_language) { 'es' }
+    let(:params) { {} }
+
+    it 'calls the Translations endpoint with correct arguments' do
+      expect_any_instance_of(OxfordDictionary::Endpoints::Translations).
+        to receive(:translation).
+        with(word: word,
+             source_language: source_language,
+             target_language: target_language,
+             params: params)
+
+      subject
+    end
+  end
+
   describe '#entry_snake_case' do
     let(:client) { described_class.new(app_id: app_id, app_key: app_key) }
     subject do
