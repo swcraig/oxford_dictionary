@@ -10,6 +10,8 @@ require 'oxford_dictionary/endpoints/sentences'
 require 'oxford_dictionary/endpoints/thesaurus'
 require 'oxford_dictionary/endpoints/search'
 
+require 'oxford_dictionary/request'
+
 module OxfordDictionary
   # The client object to interact with
   class Client
