@@ -1,6 +1,8 @@
 require 'net/http'
 
 module OxfordDictionary
+  # A lightweight request class for use by the endpoints
+  # All endpoints implement only the GET action
   class Request
     BASE_URL = 'https://od-api.oxforddictionaries.com/api/v2'.freeze
 

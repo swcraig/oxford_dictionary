@@ -2,6 +2,7 @@ require 'oxford_dictionary/deserialize'
 
 module OxfordDictionary
   module Endpoints
+    # The common functionality (and dependency initialization) of all endpoints
     class Endpoint
       def initialize(request_client:)
         @request_client = request_client

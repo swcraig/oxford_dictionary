@@ -2,6 +2,10 @@ require 'oxford_dictionary/endpoints/endpoint'
 
 module OxfordDictionary
   module Endpoints
+    # Interface for the /thesaurus endpoint
+    #
+    # API documentation can be found here:
+    # https://developer.oxforddictionaries.com/documentation
     class Thesaurus < Endpoint
       ENDPOINT = 'thesaurus'.freeze
 

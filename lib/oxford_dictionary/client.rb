@@ -8,7 +8,10 @@ require 'oxford_dictionary/endpoints/search'
 require 'oxford_dictionary/request'
 
 module OxfordDictionary
-  # The client object to interact with
+  # Our client class to interface with the different API endpoints
+  # This should be, in general, the only touchpoint for library use
+  #
+  # OxfordDictionary::Client.new is also aliased to OxfordDictionary.new
   class Client
     attr_reader :app_id, :app_key
 
