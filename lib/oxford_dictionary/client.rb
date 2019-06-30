@@ -1,5 +1,3 @@
-require 'oxford_dictionary/endpoints/entry_endpoint'
-
 require 'oxford_dictionary/endpoints/entries'
 require 'oxford_dictionary/endpoints/lemmas'
 require 'oxford_dictionary/endpoints/translations'
@@ -12,8 +10,6 @@ require 'oxford_dictionary/request'
 module OxfordDictionary
   # The client object to interact with
   class Client
-    include OxfordDictionary::Endpoints::EntryEndpoint
-
     attr_reader :app_id, :app_key
 
     def initialize(params)
