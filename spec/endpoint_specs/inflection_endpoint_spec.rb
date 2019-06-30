@@ -1,24 +1,21 @@
 require 'spec_helper'
 
-describe OxfordDictionary::Endpoints::InflectionEndpoint do
-  before do
-    stub_get('inflections/en/changed', 'inflection_changed.json')
-    filters = 'grammaticalFeatures=singular,past;lexicalCategory=noun'
-    stub_get(
-      "inflections/en/changed/#{filters}",
-      'inflection_filters_changed.json'
-    )
+describe 'V1 inflections delegations' do
+  let(:client) do
+    OxfordDictionary.new(app_id: ENV['APP_ID'], app_key: ENV['APP_KEY'])
   end
-  let(:client) { OxfordDictionary.new(app_id: 'ID', app_key: 'SECRET') }
 
   context '#inflection without filters' do
     let(:resp) { client.inflection('changed') }
-    it 'is an inflection request' do
-      lex_entry = resp.lexical_entries[0]
-      expect(lex_entry.grammatical_features).to be_an Array
-      expect(lex_entry.grammatical_features[0].text).to eq('Past')
-      expect(lex_entry.lexical_category).to eq('Verb')
-      expect(lex_entry.inflection_of).to be_an Array
+    it 'makes a request to the proper V2 endpoint' do
+      VCR.use_cassette('v1_inflection') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI('lemmas/en/changed')).
+          once.
+          and_call_original
+        expect(resp.results.first.id).to eq('changed')
+      end
     end
   end
 
@@ -29,11 +26,15 @@ describe OxfordDictionary::Endpoints::InflectionEndpoint do
         grammaticalFeatures: %w(singular past), lexicalCategory: 'noun'
       )
     end
-    it 'properly requests with filters' do
-      lex_entry = resp.lexical_entries[0]
-      expect(lex_entry.grammatical_features[0].text).to eq('Singular')
-      expect(lex_entry.lexical_category).to eq('Noun')
-      expect(lex_entry.inflection_of).to be_an Array
+    it 'makes a request to the proper V2 endpoint' do
+      VCR.use_cassette('v1_inflection_filters') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI('lemmas/en/changed?grammaticalFeatures=singular%2Cpast&lexicalCategory=noun')).
+          once.
+          and_call_original
+        expect(resp.results).to eq([])
+      end
     end
   end
 end
