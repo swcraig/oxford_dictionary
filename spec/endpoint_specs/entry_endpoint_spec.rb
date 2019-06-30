@@ -1,76 +1,37 @@
 require 'spec_helper'
 
-describe OxfordDictionary::Endpoints::EntryEndpoint do
-  before do
-    stub_get('entries/en/ace', 'entry_ace.json')
-    stub_get('entries/es/ace', 'entry_ace_es.json')
-    stub_get('entries/en/ace/regions=us', 'entry_ace_region_us.json')
-    stub_get('entries/en/ace/definitions', 'entry_ace_definitions.json')
-    stub_get('entries/en/ace/examples', 'entry_ace_examples.json')
-    stub_get('entries/en/ace/pronunciations', 'entry_ace_pronunciations.json')
-    stub_get('entries/en/vapid/sentences', 'entry_vapid_sentences.json')
-    stub_get('entries/en/vapid/antonyms', 'entry_vapid_antonyms.json')
-    stub_get('entries/en/vapid/synonyms', 'entry_vapid_synonyms.json')
-    stub_error('entries/en/wordthatdoesnotexist', 'entry_error.txt')
-    stub_get(
-      'entries/en/truth/translations=es',
-      'entry_truth_translations.json'
-    )
-    stub_get(
-      'entries/en/ace/grammaticalFeatures=singular,past;lexicalCategory=noun',
-      'entry_ace_singular_noun.json'
-    )
-    stub_get(
-      'entries/en/vapid/synonyms;antonyms',
-      'entry_vapid_antonym_synonym.json'
-    )
+describe 'V1 entry delegations' do
+  let(:base_url) { 'https://od-api.oxforddictionaries.com/api/v2' }
+  let(:client) do
+    OxfordDictionary.new(app_id: ENV['APP_ID'], app_key: ENV['APP_KEY'])
   end
-  let(:client) { OxfordDictionary.new(app_id: 'ID', app_key: 'SECRET') }
+  let(:response_double) { double(body: {}.to_json) }
 
   context '#entry without filters' do
     let(:resp) { client.entry('ace') }
-    it 'is an entry request' do
-      expect(resp.id).to eq('ace')
-      expect(resp.language).to eq('en')
-      expect(resp.word).to eq('ace')
-    end
-
-    it 'has a lexical entry' do
-      lex = resp.lexical_entries.first
-      expect(lex.language).to eq('en')
-      expect(lex.lexical_category).to eq('Noun')
-      expect(lex.text).to eq('ace')
-      expect(lex.entries).to be_an Array
-    end
-
-    it 'has an entry' do
-      entry = resp.lexical_entries.first.entries.first
-      expect(entry.homograph_number).to eq('000')
-      expect(entry.etymologies).to be_an Array
-      expect(entry.senses).to be_an Array
-    end
-
-    it 'has senses' do
-      senses = resp.lexical_entries.first.entries.first.senses.first
-      expect(senses.id).to eq('m_en_gb0004640.001')
-    end
-
-    it 'has a pronunciation' do
-      pronunciation = resp.lexical_entries.first.pronunciations.first
-      expect(pronunciation.phonetic_notation).to eq('IPA')
+    it 'hits the expected endpoint' do
+      VCR.use_cassette('v1_entry') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI("entries/en-gb/ace")).
+          once.
+          and_call_original
+        expect(resp.id).to eq('ace')
+      end
     end
   end
 
   context '#entry with 404 error' do
+    let(:resp) { client.entry('wordthatdoesnotexist') }
     it 'raises a 404 error when not found' do
-      expect { client.entry('wordthatdoesnotexist') }
-        .to raise_exception(OxfordDictionary::Error, /No entry available/)
+      VCR.use_cassette('v1_entry_error') do
+        expect(resp.error).to match(/No entry found/)
+      end
     end
   end
 
   context '#entry with filters' do
     let(:resp_es) { client.entry('ace', lang: 'es') }
-    let(:resp_region_us) { client.entry('ace', regions: 'us') }
     let(:resp_sing_noun) do
       client.entry(
         'ace',
@@ -79,95 +40,140 @@ describe OxfordDictionary::Endpoints::EntryEndpoint do
     end
 
     it 'returns a spanish entry' do
-      expect(resp_es.id).to eq('ace')
-      expect(resp_es.language).to eq('es')
-    end
-
-    it 'returns us region entry' do
-      sense = resp_region_us.lexical_entries[0].entries.first.senses[0]
-      expect(sense.id).to include('us')
+      VCR.use_cassette('v1_entry_es') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI("entries/es/ace")).
+          once.
+          and_call_original
+        resp_es
+      end
     end
 
     it 'returns a singular past noun entry' do
-      expect(resp_sing_noun.lexical_entries.size).to eq(4)
+      VCR.use_cassette('v1_entry_past_nouns') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI("entries/en-gb/ace?grammaticalFeatures=singular%2Cpast&lexicalCategory=noun")).
+          once.
+          and_call_original
+        resp_sing_noun
+      end
     end
   end
 
   context '#entry_definitions' do
     let(:resp) { client.entry_definitions('ace') }
     it 'has definition properties' do
-      expect(resp.id).to eq('ace')
-      expect(resp.lexical_entries[0].pronunciations).to be_empty
-      sense = resp.lexical_entries.first.entries.first.senses.first
-      expect(sense.definitions).to be_an Array
+      VCR.use_cassette('v1_entry_definitions') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI("entries/en-gb/ace?fields=definitions")).
+          once.
+          and_call_original
+        expect(resp.id).to eq('ace')
+        resp
+      end
     end
   end
 
   context '#entry_examples' do
     let(:resp) { client.entry_examples('ace') }
     it 'has example properties' do
-      expect(resp.id).to eq('ace')
-      expect(resp.lexical_entries[0].pronunciations).to be_empty
-      sense = resp.lexical_entries.first.entries.first.senses.first
-      expect(sense.examples).to be_an Array
+      VCR.use_cassette('v1_entry_examples') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI("entries/en-gb/ace?fields=examples")).
+          once.
+          and_call_original
+        resp
+        expect(resp.id).to eq('ace')
+      end
     end
   end
 
   context '#entry_pronunciations' do
     let(:resp) { client.entry_pronunciations('ace') }
     it 'has pronunciation properties' do
-      expect(resp.id).to eq('ace')
-      expect(resp.lexical_entries[0].entries).to be_empty
+      VCR.use_cassette('v1_entry_pronunciations') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI("entries/en-gb/ace?fields=pronunciations")).
+          once.
+          and_call_original
+        expect(resp.id).to eq('ace')
+      end
     end
   end
 
   context '#entry_sentences' do
     let(:resp) { client.entry_sentences('vapid') }
     it 'has sentence properties' do
-      expect(resp.id).to eq('vapid')
-      expect(resp.lexical_entries[0].entries).to be_empty
-      expect(resp.lexical_entries[0].sentences).to be_an Array
-      expect(resp.lexical_entries[0].sentences[0].sense_ids).to be_an Array
+      VCR.use_cassette('v1_entry_sentences') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI("sentences/en/vapid")).
+          once.
+          and_return(response_double)
+        resp
+      end
     end
   end
 
   context '#entry_antonyms' do
     let(:resp) { client.entry_antonyms('vapid') }
     it 'has antonym properties' do
-      expect(resp.id).to eq('vapid')
-      entry = resp.lexical_entries[0].entries[0]
-      expect(entry.senses[0].antonyms).to be_an Array
+      VCR.use_cassette('v1_entry_antonyms') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI("thesaurus/en/vapid?fields=antonyms")).
+          once.
+          and_return(response_double)
+        resp
+      end
     end
   end
 
   context '#entry_synonyms' do
     let(:resp) { client.entry_synonyms('vapid') }
     it 'has synonym properties' do
-      expect(resp.id).to eq('vapid')
-      entry = resp.lexical_entries[0].entries[0]
-      expect(entry.senses[0].synonyms).to be_an Array
+      VCR.use_cassette('v1_entry_synonyms') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI("thesaurus/en/vapid?fields=synonyms")).
+          once.
+          and_return(response_double)
+        resp
+      end
     end
   end
 
   context '#entry_antonyms_synonyms' do
     let(:resp) { client.entry_antonyms_synonyms('vapid') }
     it 'has both antonym and synonym properties' do
-      expect(resp.id).to eq('vapid')
-      entry = resp.lexical_entries[0].entries[0]
-      expect(entry.senses[0].antonyms).to be_an Array
-      expect(entry.senses[0].antonyms[0].id).to eq('lively')
-      expect(entry.senses[0].synonyms[0].id).to eq('insipid')
+      VCR.use_cassette('v1_entry_antonym_synonym') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI("thesaurus/en/vapid?fields=antonyms%2Csynonyms")).
+          once.
+          and_return(response_double)
+        resp
+      end
     end
   end
 
   context '#entry_translations' do
     let(:resp) { client.entry_translations('truth') }
     it 'has translation properties' do
-      expect(resp.id).to eq('truth')
-      expect(resp.language).to eq('en')
-      entry = resp.lexical_entries[0].entries[0]
-      expect(entry.senses[0].translations).to be_an Array
-      expect(entry.senses[0].translations[0].language).to eq('es')
+      VCR.use_cassette('v1_entry_translations') do
+        expect_any_instance_of(OxfordDictionary::Request).
+          to receive(:get).
+          with(uri: URI("translations/en-us/es/truth")).
+          once.
+          and_return(response_double)
+        resp
+        # expect(resp.id).to eq('truth')
+      end
     end
   end
 end

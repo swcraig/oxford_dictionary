@@ -1,0 +1,242 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://od-api.oxforddictionaries.com/api/v2/entries/en-gb/ace?fields=examples
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - od-api.oxforddictionaries.com
+      App-Id:
+      - APP_ID
+      App-Key:
+      - APP_KEY
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Api-Version:
+      - v2
+      Code-Version:
+      - v2.3.2-g02aa52c
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Sun, 30 Jun 2019 01:14:01 GMT
+      Server:
+      - openresty/1.13.6.2
+      Content-Length:
+      - '8008'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "id": "ace",
+            "metadata": {
+                "operation": "retrieve",
+                "provider": "Oxford University Press",
+                "schema": "RetrieveEntry"
+            },
+            "results": [
+                {
+                    "id": "ace",
+                    "language": "en-gb",
+                    "lexicalEntries": [
+                        {
+                            "entries": [
+                                {
+                                    "homographNumber": "100",
+                                    "senses": [
+                                        {
+                                            "examples": [
+                                                {
+                                                    "text": "the ace of diamonds"
+                                                },
+                                                {
+                                                    "registers": [
+                                                        {
+                                                            "id": "figurative",
+                                                            "text": "Figurative"
+                                                        }
+                                                    ],
+                                                    "text": "life had started dealing him aces again"
+                                                }
+                                            ],
+                                            "id": "m_en_gbus0005680.006"
+                                        },
+                                        {
+                                            "id": "m_en_gbus0005680.010",
+                                            "subsenses": [
+                                                {
+                                                    "examples": [
+                                                        {
+                                                            "text": "a Battle of Britain ace"
+                                                        }
+                                                    ],
+                                                    "id": "m_en_gbus0005680.011"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "examples": [
+                                                {
+                                                    "text": "Nadal banged down eight aces in the set"
+                                                }
+                                            ],
+                                            "id": "m_en_gbus0005680.013",
+                                            "subsenses": [
+                                                {
+                                                    "examples": [
+                                                        {
+                                                            "text": "his hole in one at the 15th was Senior's second ace as a professional"
+                                                        }
+                                                    ],
+                                                    "id": "m_en_gbus0005680.014"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "language": "en-gb",
+                            "lexicalCategory": {
+                                "id": "noun",
+                                "text": "Noun"
+                            },
+                            "text": "ace"
+                        },
+                        {
+                            "entries": [
+                                {
+                                    "homographNumber": "101",
+                                    "senses": [
+                                        {
+                                            "examples": [
+                                                {
+                                                    "text": "an ace swimmer"
+                                                },
+                                                {
+                                                    "notes": [
+                                                        {
+                                                            "text": "as exclamation",
+                                                            "type": "grammaticalNote"
+                                                        }
+                                                    ],
+                                                    "text": "Ace! You've done it!"
+                                                }
+                                            ],
+                                            "id": "m_en_gbus0005680.016"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "language": "en-gb",
+                            "lexicalCategory": {
+                                "id": "adjective",
+                                "text": "Adjective"
+                            },
+                            "text": "ace"
+                        },
+                        {
+                            "entries": [
+                                {
+                                    "homographNumber": "102",
+                                    "senses": [
+                                        {
+                                            "id": "m_en_gbus0005680.020",
+                                            "subsenses": [
+                                                {
+                                                    "examples": [
+                                                        {
+                                                            "text": "there was a prize for the first player to ace the hole"
+                                                        }
+                                                    ],
+                                                    "id": "m_en_gbus0005680.026"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ],
+                            "language": "en-gb",
+                            "lexicalCategory": {
+                                "id": "verb",
+                                "text": "Verb"
+                            },
+                            "text": "ace"
+                        }
+                    ],
+                    "type": "headword",
+                    "word": "ace"
+                },
+                {
+                    "id": "ace",
+                    "language": "en-gb",
+                    "lexicalEntries": [
+                        {
+                            "entries": [
+                                {
+                                    "homographNumber": "200",
+                                    "senses": [
+                                        {
+                                            "examples": [
+                                                {
+                                                    "text": "both asexual, they have managed to connect with other aces offline"
+                                                }
+                                            ],
+                                            "id": "m_en_gbus1190638.004"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "language": "en-gb",
+                            "lexicalCategory": {
+                                "id": "noun",
+                                "text": "Noun"
+                            },
+                            "text": "ace"
+                        },
+                        {
+                            "entries": [
+                                {
+                                    "homographNumber": "201",
+                                    "senses": [
+                                        {
+                                            "examples": [
+                                                {
+                                                    "text": "I didn't realize that I was ace for a long time"
+                                                }
+                                            ],
+                                            "id": "m_en_gbus1190638.006"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "language": "en-gb",
+                            "lexicalCategory": {
+                                "id": "adjective",
+                                "text": "Adjective"
+                            },
+                            "text": "ace"
+                        }
+                    ],
+                    "type": "headword",
+                    "word": "ace"
+                }
+            ],
+            "word": "ace"
+        }
+    http_version: 
+  recorded_at: Sun, 30 Jun 2019 01:14:01 GMT
+recorded_with: VCR 4.0.0
