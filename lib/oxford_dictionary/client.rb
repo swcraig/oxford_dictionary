@@ -304,7 +304,7 @@ module OxfordDictionary
       end.to_h
       parameters = params || {}
 
-      lemma(word: args.first, language: 'en', params: parameters)
+      lemma(word: args.first, language: language, params: parameters)
     end
 
     private
