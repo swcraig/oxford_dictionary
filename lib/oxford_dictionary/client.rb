@@ -92,10 +92,38 @@ module OxfordDictionary
           for more information. Specifically check out
           OxfordDictionary::Endpoints::Search#search for the new interface.
         '''
+
+        language_parameter = args[1].is_a?(Hash) && args[1][:lang]
+        language = language_parameter || 'en-gb'
+        args[1].delete(:lang) if language_parameter
+
         if args[1].is_a?(Hash) && args[1][:translations]
-          super(args[0], translations: args[1][:translations])
+          target_language = args[1][:translations]
+          args[1].delete(:translations)
+
+          params = args[1]&.map do |key, value|
+            if value.is_a?(Array)
+              [key, value.join(',')]
+            else
+              [key, value]
+            end
+          end.to_h
+          parameters = params&.merge(q: args[0]) || {}
+          search_translation(
+            source_language: language,
+            target_language: target_language,
+            params: parameters
+          )
         else
-          super(*args)
+          params = args[1]&.map do |key, value|
+            if value.is_a?(Array)
+              [key, value.join(',')]
+            else
+              [key, value]
+            end
+          end.to_h
+          parameters = params&.merge(q: args[0]) || {}
+          search_endpoint.search(language: language, params: parameters)
         end
       end
     end
