@@ -1,0 +1,108 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://od-api.oxforddictionaries.com/api/v2/entries/es/ace
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - application/json
+      User-Agent:
+      - Ruby
+      Host:
+      - od-api.oxforddictionaries.com
+      App-Id:
+      - APP_ID
+      App-Key:
+      - APP_KEY
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Api-Version:
+      - v2
+      Code-Version:
+      - v2.3.2-g02aa52c
+      Content-Type:
+      - application/json;charset=utf-8
+      Date:
+      - Sun, 30 Jun 2019 01:13:59 GMT
+      Server:
+      - openresty/1.13.6.2
+      Content-Length:
+      - '2317'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+            "id": "ace",
+            "metadata": {
+                "operation": "retrieve",
+                "provider": "Oxford University Press",
+                "schema": "RetrieveEntry"
+            },
+            "results": [
+                {
+                    "id": "ace",
+                    "language": "es",
+                    "lexicalEntries": [
+                        {
+                            "entries": [
+                                {
+                                    "grammaticalFeatures": [
+                                        {
+                                            "id": "masculine",
+                                            "text": "Masculine",
+                                            "type": "Gender"
+                                        }
+                                    ],
+                                    "notes": [
+                                        {
+                                            "text": "Se pronuncia 'eis'",
+                                            "type": "editorialNote"
+                                        },
+                                        {
+                                            "text": "El plural es aces (pronunciado 'eises')",
+                                            "type": "grammaticalNote"
+                                        }
+                                    ],
+                                    "senses": [
+                                        {
+                                            "definitions": [
+                                                "Jugada de tenis en la que el jugador obtiene directamente un tanto al efectuar un saque sin que el adversario consiga tocar la pelota"
+                                            ],
+                                            "domains": [
+                                                {
+                                                    "id": "sport",
+                                                    "text": "Sport"
+                                                }
+                                            ],
+                                            "id": "id5d20fa17-6641-44d4-ac73-41220aa62a81"
+                                        }
+                                    ]
+                                }
+                            ],
+                            "language": "es",
+                            "lexicalCategory": {
+                                "id": "noun",
+                                "text": "Noun"
+                            },
+                            "text": "ace"
+                        }
+                    ],
+                    "type": "headword",
+                    "word": "ace"
+                }
+            ],
+            "word": "ace"
+        }
+    http_version: 
+  recorded_at: Sun, 30 Jun 2019 01:14:00 GMT
+recorded_with: VCR 4.0.0
