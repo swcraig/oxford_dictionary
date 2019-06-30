@@ -19,69 +19,67 @@ client = OxfordDictionary::Client.new(app_id: 'ID', app_key: 'SECRET')
 client = OxfordDictionary.new(app_id: 'ID', app_key: 'SECRET')
 ```
 ### Usage Examples
-Some documentation on the different endpoint function calls can be found [here](http://rubydoc.info/gems/oxford_dictionary/OxfordDictionary/Endpoints)
-
 This wrapper follows the schema laid out by the API quite closely. The data
 schema for the different API calls can be found [here](https://developer.oxforddictionaries.com/documentation).
 
-###### Get the results for an entry
+###### Entries
 ```ruby
-entry = client.entry('vapid')
+entry = client.entry(word: 'vapid', dataset: 'en-gb', params: {})
 
 # Access the first entry
 # Refer to the API documentation for the schema of the returned data structure
-first_lexical_entry = entry.lexical_entries[0]
+first_lexical_entry = entry.lexicalEntries.first
 
 # With some filters
 filters = { lexicalCategory: 'Verb', domains: 'Art'}
-client.entry('truth', filters)
+client.entry(word: 'truth', dataset: 'en-gb', params: filters)
 
-# Or do them "inline"
-client.entry('truth', lexicalCategory: 'Verb', domains: 'Art')
+# You can also search for the results for different datasets
+# Refer to the Oxford Dictionaries documentation for all the
+# possible datasets
+client.entry(word: 'ace', dataset: 'es', params: {})
 
-# From a dictionary of a specific language (default is 'en')
-client.entry('ace', lang: 'es')
+# You can query for results from a specific "field"
+# Refer to the Oxford Dictionaries documentation for all the
+# possible fields
+client.entry(word: 'explain', dataset: 'en-gb', params: { fields: 'examples' })
+
 ```
 
-###### Or return some subset of information
+###### Lemmas
 ```ruby
-# Like just the examples
-examples = client.entry_examples('explain')
-
-# Or only the pronunciations...
-the_noises = client.entry_pronunciations('knight')
-
-# Or the translations (for Swahili in this example)
-en_to_es = client.entry_translations('change', translations: 'sw')
-# If no :translations filter is supplied, default is 'es'
-
-# Or some of the other documented API calls
-client.entry_sentences('scholar')
-client.entry_definitions('correct')
-client.entry_antonyms_synonyms('monotonous')
-# Etc...
-
-# Generally the method names follow the documented API closely
+client.lemma(word: 'condition', language: 'en', params: {})
 ```
 
-###### Other endpoint calls
+###### Translations
 ```ruby
-# Or the search endpoint
-search_results = client.search('condition', prefix: true)
+client.translation(
+  word: 'condition',
+  source_language: 'en',
+  target_language: 'es',
+  params: {}
+)
 ```
 
-###### A quick note on how to add filters to queries
-There isn't much argument checking at the moment.  Some endpoints do not accept filter arguments, refer to the API documentation to check for endpoints that accept filters.
+###### Sentences
 ```ruby
-# All endpoints accept the :lang filter.  This specifies which dictionary to use
-# If no argument is supplied, default is 'en'
-filters = { lang: 'es' }
-
-# To use multiple values on a single filter, make it an array
-filters = { lexicalCategory: ['Noun', 'Verb'] }
+client.sentence(word: 'paraphrase', language: 'en', params: {})
 ```
 
-Argument names need to be in camelCase, not snake_case. However, the objects returned from API calls use snake_case attributes.
+###### Search
+```ruby
+client.search(language: 'en-gb', params: { q: 'vapid' })
+```
+
+###### Thesaurus
+```ruby
+client.thesaurus(
+  word: 'book',
+  language: 'en',
+  params: { fields: 'synonyms,antonyms}
+)
+# Or use { fields: 'synonyms' } for just synonyms
+```
 
 ## Development
 
