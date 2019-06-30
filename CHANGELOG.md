@@ -1,5 +1,17 @@
 ## OxfordDictionary master (unreleased)
 
+## OxfordDictionary 2.0.0 (2019-06-29)
+- Remove wordlist endpoint
+  [\#20](https://github.com/swcraig/oxford-dictionary/pull/20)
+- Use new V2 interface for V1 inflection usage
+  [\#21](https://github.com/swcraig/oxford-dictionary/pull/21)
+- Use new V2 interface for V1 search usage
+  [\#22](https://github.com/swcraig/oxford-dictionary/pull/22)
+- Use new V2 interface for V1 entry usage
+  [\#23](https://github.com/swcraig/oxford-dictionary/pull/23)
+- Remove all V1 functionality
+  [\#24](https://github.com/swcraig/oxford-dictionary/pull/24)
+
 ## OxfordDictionary 1.3.0 (2019-06-22)
 
 - Add V2 translations support
