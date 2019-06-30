@@ -1,5 +1,4 @@
 require 'oxford_dictionary/endpoints/entry_endpoint'
-require 'oxford_dictionary/endpoints/search_endpoint'
 
 require 'oxford_dictionary/endpoints/entries'
 require 'oxford_dictionary/endpoints/lemmas'
@@ -14,7 +13,6 @@ module OxfordDictionary
   # The client object to interact with
   class Client
     include OxfordDictionary::Endpoints::EntryEndpoint
-    include OxfordDictionary::Endpoints::SearchEndpoint
 
     attr_reader :app_id, :app_key
 
