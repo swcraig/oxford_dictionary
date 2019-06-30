@@ -66,9 +66,6 @@ client.entry_antonyms_synonyms('monotonous')
 
 ###### Other endpoint calls
 ```ruby
-# Inflections of a word
-inflections = client.inflection('changed')
-
 # Or the search endpoint
 search_results = client.search('condition', prefix: true)
 ```
