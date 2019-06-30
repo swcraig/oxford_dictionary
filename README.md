@@ -69,9 +69,6 @@ client.entry_antonyms_synonyms('monotonous')
 # Inflections of a word
 inflections = client.inflection('changed')
 
-# Wordlist results (based on categorys, filters, etc...)
-related = client.wordlist(lexicalCategory: 'Noun', word_length: '>5,<10')
-
 # Or the search endpoint
 search_results = client.search('condition', prefix: true)
 ```
@@ -85,10 +82,6 @@ filters = { lang: 'es' }
 
 # To use multiple values on a single filter, make it an array
 filters = { lexicalCategory: ['Noun', 'Verb'] }
-
-# The wordlist endpoint specifically may include "nested" filters
-# These filters (exclude, exclude_senses, etc...) require arrays
-filters = { exclude: [domains: %w(sport art)] }
 ```
 
 Argument names need to be in camelCase, not snake_case. However, the objects returned from API calls use snake_case attributes.
