@@ -232,8 +232,7 @@ module OxfordDictionary
       else
         warn '''
           Client#search without parameters is DEPRECATED.
-          Using the method without named parameters will become
-          non-functional on June 30, 2019. Use the new V2 interface for this
+          Use the new V2 interface for this
           method instead. Reference github.com/swcraig/oxford-dictionary/pull/15
           for more information. Specifically check out
           OxfordDictionary::Endpoints::Search#search for the new interface.
