@@ -47,9 +47,87 @@ module OxfordDictionary
           for more information. Specifically check out
           OxfordDictionary::Endpoints::Entries#entry for the new interface.
         '''
-        # Support V1 behaviour
-        super(*args)
+        # Try our best
+        dataset = args[1].is_a?(Hash) && args[1][:lang] || 'en-gb'
+        entry(word: args.first, dataset: dataset, params: {})
       end
+    end
+
+    def entry_definitions(*args)
+      deprecated_method
+      dataset = args[1].is_a?(Hash) && args[1][:lang] || 'en-gb'
+      entry(
+        word: args.first,
+        dataset: dataset,
+        params: { fields: 'definitions' }
+      )
+    end
+
+    def entry_examples(*args)
+      deprecated_method
+      dataset = args[1].is_a?(Hash) && args[1][:lang] || 'en-gb'
+      entry(
+        word: args.first,
+        dataset: dataset,
+        params: { fields: 'examples' }
+      )
+    end
+
+    def entry_pronunciations(*args)
+      deprecated_method
+      dataset = args[1].is_a?(Hash) && args[1][:lang] || 'en-gb'
+      entry(
+        word: args.first,
+        dataset: dataset,
+        params: { fields: 'pronunciations' }
+      )
+    end
+
+    def entry_sentences(*args)
+      deprecated_method
+      dataset = args[1].is_a?(Hash) && args[1][:lang] || 'en-gb'
+      entry(
+        word: args.first,
+        dataset: dataset,
+        params: { fields: 'sentences' }
+      )
+    end
+
+    def entry_antonyms(*args)
+      deprecated_method
+      thesaurus(
+        word: args.first,
+        language: 'en',
+        params: { fields: 'antonyms' }
+      )
+    end
+
+    def entry_synonyms(*args)
+      deprecated_method
+      thesaurus(
+        word: args.first,
+        language: 'en',
+        params: { fields: 'synonyms' }
+      )
+    end
+
+    def entry_antonyms_synonyms(*args)
+      deprecated_method
+      thesaurus(
+        word: args.first,
+        language: 'en',
+        params: { fields: 'antonyms,synonyms' }
+      )
+    end
+
+    def entry_translations(*args)
+      deprecated_method
+      translation(
+        word: args.first,
+        source_language: 'en-us',
+        target_language: args[1][:translations],
+        params: {}
+      )
     end
 
     def entry_snake_case(word:, dataset:, params: {})
@@ -112,8 +190,17 @@ module OxfordDictionary
       )
     end
 
+    def inflection(*args)
+      deprecated_method
+      lemma(word: args.first, language: 'en', params: {})
+    end
 
     private
+
+    def deprecated_method
+      warn '''
+      '''
+    end
 
     def lemma_endpoint
       @lemma_endpoint ||=
