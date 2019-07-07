@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'rubocop', '~> 0.45.0'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'vcr', '~> 5.0.0'
+  spec.add_development_dependency 'yard'
 
   spec.add_runtime_dependency 'plissken', '~> 0.1.0'
 end
