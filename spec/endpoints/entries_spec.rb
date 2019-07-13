@@ -55,7 +55,7 @@ RSpec.describe OxfordDictionary::Endpoints::Entries do
       end
     end
 
-    context "when the dataset is en-us" do
+    context 'when the dataset is en-us' do
       let(:dataset) { 'en-us' }
 
       it 'calls the API with en-us in the URL' do
