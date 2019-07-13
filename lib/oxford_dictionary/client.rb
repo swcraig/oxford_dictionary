@@ -24,37 +24,8 @@ module OxfordDictionary
       end
     end
 
-    def entry(*args)
-      if args.first.is_a?(Hash)
-        args = args.first
-        entry_endpoint.entry(
-          word: args[:word],
-          dataset: args[:dataset],
-          params: args[:params]
-        )
-      else
-        warn '''
-          The V1 interface for this library is DEPRECATED.
-          Use the new V2 interface for this
-          method instead. Reference github.com/swcraig/oxford-dictionary/pull/8
-          for more information. Specifically check out
-          OxfordDictionary::Endpoints::Entries#entry for the new interface.
-        '''
-        # Try our best
-        dataset = args[1].is_a?(Hash) && args[1][:lang] || 'en-gb'
-        has_lang = args[1].is_a?(Hash) && args[1][:lang]
-        args[1].delete(:lang) if has_lang
-
-          params = args[1]&.map do |key, value|
-            if value.is_a?(Array)
-              [key, value.join(',')]
-            else
-              [key, value]
-            end
-          end.to_h
-          parameters = params || {}
-        entry(word: args.first, dataset: dataset, params: parameters)
-      end
+    def entry(word:, dataset:, params:)
+      entry_endpoint.entry(word: word, dataset: dataset, params: params)
     end
 
     def entry_definitions(*args)
