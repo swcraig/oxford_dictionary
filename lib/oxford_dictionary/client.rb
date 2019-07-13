@@ -109,31 +109,6 @@ module OxfordDictionary
       )
     end
 
-    def inflection(*args)
-      warn '''
-          Client#inflection is DEPRECATED.
-          Use Client#lemma instead. Reference
-          github.com/swcraig/oxford-dictionary/pull/10 for for more information.
-          Check out OxfordDictionary::Endpoints::Lemmas#lemma for the interface
-          to use.
-      '''
-
-      language_parameter = args[1].is_a?(Hash) && args[1][:lang]
-      language = language_parameter || 'en'
-      args[1].delete(:lang) if language_parameter
-
-      params = args[1]&.map do |key, value|
-        if value.is_a?(Array)
-          [key, value.join(',')]
-        else
-          [key, value]
-        end
-      end.to_h
-      parameters = params || {}
-
-      lemma(word: args.first, language: language, params: parameters)
-    end
-
     private
 
     def lemma_endpoint
