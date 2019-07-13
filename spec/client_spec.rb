@@ -31,7 +31,9 @@ RSpec.describe OxfordDictionary::Client do
       it 'calls the Entries endpoint with correct arguments' do
         expect_any_instance_of(OxfordDictionary::Endpoints::Entries).
           to receive(:entry).
-          with(word: args[:word], dataset: args[:dataset], params: args[:params])
+          with(word: args[:word],
+               dataset: args[:dataset],
+               params: args[:params])
 
         subject
       end
@@ -59,7 +61,8 @@ RSpec.describe OxfordDictionary::Client do
         word: word,
         source_language: source_language,
         target_language: target_language,
-        params: params)
+        params: params
+      )
     end
 
     let(:word) { 'ace' }
