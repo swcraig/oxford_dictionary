@@ -47,16 +47,19 @@ RSpec.describe OxfordDictionary::Endpoints::Translations do
       #   response = subject
       #   expect(response).to be_an(OpenStruct)
       #   expect(response.results.first.id).to eq(word)
-      #   expect(response.results.first.lexicalEntries).to all(be_an(OpenStruct))
+      #   expect(response.results.first.lexicalEntries).
+      #     to all(be_an(OpenStruct))
       # end
     end
 
     context 'when the params include strictMatch: true' do
       let(:params) { { strictMatch: true } }
+      let(:strict) { 'strictMatch=true' }
 
       it 'only returns strict match translations', :aggregate_failures do
-        expected_uri =
-          URI("translations/#{source_language}/#{target_language}/#{word}?strictMatch=true")
+        expected_uri = URI(
+          "translations/#{source_language}/#{target_language}/#{word}?#{strict}"
+        )
 
         expect(request_client).to receive(:get).
           with(uri: expected_uri).
