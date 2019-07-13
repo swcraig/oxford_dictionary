@@ -55,7 +55,7 @@ RSpec.describe OxfordDictionary::Endpoints::Lemmas do
       end
     end
 
-    context "when the language is es" do
+    context 'when the language is es' do
       let(:word) { 'fuego' }
       let(:language) { 'es' }
 
