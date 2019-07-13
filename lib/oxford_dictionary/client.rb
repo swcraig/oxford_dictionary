@@ -53,52 +53,8 @@ module OxfordDictionary
       )
     end
 
-    def search(*args)
-      if args.first.is_a?(Hash)
-        args = args.first
-        search_endpoint.search(language: args[:language], params: args[:params])
-      else
-        warn '''
-          Client#search without parameters is DEPRECATED.
-          Use the new V2 interface for this
-          method instead. Reference github.com/swcraig/oxford-dictionary/pull/15
-          for more information. Specifically check out
-          OxfordDictionary::Endpoints::Search#search for the new interface.
-        '''
-
-        language_parameter = args[1].is_a?(Hash) && args[1][:lang]
-        language = language_parameter || 'en-gb'
-        args[1].delete(:lang) if language_parameter
-
-        if args[1].is_a?(Hash) && args[1][:translations]
-          target_language = args[1][:translations]
-          args[1].delete(:translations)
-
-          params = args[1]&.map do |key, value|
-            if value.is_a?(Array)
-              [key, value.join(',')]
-            else
-              [key, value]
-            end
-          end.to_h
-          parameters = params&.merge(q: args[0]) || {}
-          search_translation(
-            source_language: language,
-            target_language: target_language,
-            params: parameters
-          )
-        else
-          params = args[1]&.map do |key, value|
-            if value.is_a?(Array)
-              [key, value.join(',')]
-            else
-              [key, value]
-            end
-          end.to_h
-          parameters = params&.merge(q: args[0]) || {}
-          search_endpoint.search(language: language, params: parameters)
-        end
-      end
+    def search(language:, params:)
+      search_endpoint.search(language: language, params: params)
     end
 
     def search_translation(source_language:, target_language:, params: {})
