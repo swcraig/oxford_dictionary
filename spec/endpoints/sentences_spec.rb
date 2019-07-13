@@ -40,7 +40,8 @@ RSpec.describe OxfordDictionary::Endpoints::Sentences do
       #   response = subject
       #   expect(response).to be_an(OpenStruct)
       #   expect(response.results.first.id).to eq(word)
-      #   expect(response.results.first.lexicalEntries).to all(be_an(OpenStruct))
+      #   expect(response.results.first.lexicalEntries).
+      #     to all(be_an(OpenStruct))
       # end
     end
   end
