@@ -74,22 +74,4 @@ RSpec.describe OxfordDictionary::Endpoints::Entries do
       end
     end
   end
-
-  describe '#entry_snake_case' do
-    subject do
-      endpoint.entry_snake_case(word: word, dataset: dataset, params: params)
-    end
-
-    it 'calls API as expected and returns snake_case', :aggregate_failures do
-      expect(request_client).to receive(:get).
-        with(uri: URI('entries/en-gb/ace')).and_call_original
-
-      VCR.use_cassette('entries#entry_snake_case') do
-        response = subject
-        expect(response).to be_an(OpenStruct)
-        expect(response.id).to eq(word)
-        expect(response.results.first.lexical_entries).to all(be_an(OpenStruct))
-      end
-    end
-  end
 end
