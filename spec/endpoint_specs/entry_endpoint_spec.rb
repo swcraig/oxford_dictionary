@@ -7,61 +7,6 @@ describe 'V1 entry delegations' do
   end
   let(:response_double) { double(body: {}.to_json) }
 
-  context '#entry without filters' do
-    let(:resp) { client.entry('ace') }
-    it 'hits the expected endpoint' do
-      VCR.use_cassette('v1_entry') do
-        expect_any_instance_of(OxfordDictionary::Request).
-          to receive(:get).
-          with(uri: URI("entries/en-gb/ace")).
-          once.
-          and_call_original
-        expect(resp.id).to eq('ace')
-      end
-    end
-  end
-
-  context '#entry with 404 error' do
-    let(:resp) { client.entry('wordthatdoesnotexist') }
-    it 'raises a 404 error when not found' do
-      VCR.use_cassette('v1_entry_error') do
-        expect(resp.error).to match(/No entry found/)
-      end
-    end
-  end
-
-  context '#entry with filters' do
-    let(:resp_es) { client.entry('ace', lang: 'es') }
-    let(:resp_sing_noun) do
-      client.entry(
-        'ace',
-        grammaticalFeatures: %w(singular past), lexicalCategory: 'noun'
-      )
-    end
-
-    it 'returns a spanish entry' do
-      VCR.use_cassette('v1_entry_es') do
-        expect_any_instance_of(OxfordDictionary::Request).
-          to receive(:get).
-          with(uri: URI("entries/es/ace")).
-          once.
-          and_call_original
-        resp_es
-      end
-    end
-
-    it 'returns a singular past noun entry' do
-      VCR.use_cassette('v1_entry_past_nouns') do
-        expect_any_instance_of(OxfordDictionary::Request).
-          to receive(:get).
-          with(uri: URI("entries/en-gb/ace?grammaticalFeatures=singular%2Cpast&lexicalCategory=noun")).
-          once.
-          and_call_original
-        resp_sing_noun
-      end
-    end
-  end
-
   context '#entry_definitions' do
     let(:resp) { client.entry_definitions('ace') }
     it 'has definition properties' do
