@@ -26,7 +26,6 @@ RSpec.describe OxfordDictionary::Endpoints::Search do
     let(:language) { 'en-gb' }
     let(:params) { { q: 'an' } }
 
-
     it 'calls API as expected', :aggregate_failures do
       expected_uri = URI("search/#{language}?q=an")
 
@@ -40,7 +39,8 @@ RSpec.describe OxfordDictionary::Endpoints::Search do
       #   response = subject
       #   expect(response).to be_an(OpenStruct)
       #   expect(response.results.first.id).to eq(word)
-      #   expect(response.results.first.lexicalEntries).to all(be_an(OpenStruct))
+      #   expect(response.results.first.lexicalEntries).
+      #     to all(be_an(OpenStruct))
       # end
     end
   end
@@ -72,7 +72,8 @@ RSpec.describe OxfordDictionary::Endpoints::Search do
       #   response = subject
       #   expect(response).to be_an(OpenStruct)
       #   expect(response.results.first.id).to eq(word)
-      #   expect(response.results.first.lexicalEntries).to all(be_an(OpenStruct))
+      #   expect(response.results.first.lexicalEntries).
+      #     to all(be_an(OpenStruct))
       # end
     end
   end
