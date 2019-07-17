@@ -34,6 +34,9 @@ first_lexical_entry = entry.lexicalEntries.first
 filters = { lexicalCategory: 'Verb', domains: 'Art'}
 client.entry(word: 'truth', dataset: 'en-gb', params: filters)
 
+# To have multiple values for a single filter use comma separated terms
+filters = { lexicalCategory: 'Verb,Noun' }
+
 # You can also search for the results for different datasets
 # Refer to the Oxford Dictionaries documentation for all the
 # possible datasets
