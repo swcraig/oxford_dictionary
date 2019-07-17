@@ -1,5 +1,4 @@
 require 'oxford_dictionary/endpoints/endpoint'
-require 'plissken'
 
 module OxfordDictionary
   module Endpoints
