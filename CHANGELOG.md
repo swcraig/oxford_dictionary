@@ -1,5 +1,8 @@
 ## OxfordDictionary master (unreleased)
 
+## OxfordDictionary 3.0.0 (2019-08-13)
+- Remove support for all V1 API calls
+
 ## OxfordDictionary 2.0.0 (2019-06-29)
 - Remove wordlist endpoint
   [\#20](https://github.com/swcraig/oxford-dictionary/pull/20)
