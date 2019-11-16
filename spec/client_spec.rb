@@ -6,19 +6,21 @@ RSpec.describe OxfordDictionary::Client do
   let(:client) { described_class.new(app_id: app_id, app_key: app_key) }
 
   describe '#new' do
+    let(:excepted_error_string) { 'app_id and app_key arguments required.' }
+
     it 'requires an argument' do
       expect { OxfordDictionary::Client.new(nil) }.
-        to raise_error(ArgumentError, 'API id and key required.')
+        to raise_error(ArgumentError, excepted_error_string)
     end
 
     it 'requires a hash argument' do
       expect { OxfordDictionary::Client.new('string') }.
-        to raise_error(ArgumentError, 'API id and key required.')
+        to raise_error(ArgumentError, excepted_error_string)
     end
 
     it 'requires both id and key' do
       expect { OxfordDictionary.new(app_id: 'ID') }.
-        to raise_error(ArgumentError, 'API id and key required.')
+        to raise_error(ArgumentError, excepted_error_string)
     end
   end
 

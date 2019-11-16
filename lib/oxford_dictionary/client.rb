@@ -17,7 +17,7 @@ module OxfordDictionary
 
     def initialize(params)
       unless params.is_a?(Hash) && params.key?(:app_id) && params.key?(:app_key)
-        raise(ArgumentError, 'API id and key required.')
+        raise(ArgumentError, 'app_id and app_key arguments required.')
       end
       params.each { |key, value| instance_variable_set("@#{key}", value) }
     end
