@@ -19,9 +19,7 @@ module OxfordDictionary
       unless params.is_a?(Hash) && params.key?(:app_id) && params.key?(:app_key)
         raise(ArgumentError, 'API id and key required.')
       end
-      params.each do |key, value|
-        instance_variable_set("@#{key}", value)
-      end
+      params.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 
     def entry(word:, dataset:, params:)
