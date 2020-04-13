@@ -3,9 +3,6 @@ require 'oxford_dictionary/endpoints/endpoint'
 module OxfordDictionary
   module Endpoints
     # Interface for the /translations endpoint
-    #
-    # API documentation can be found here:
-    # https://developer.oxforddictionaries.com/documentation
     class Translations < Endpoint
       ENDPOINT = 'translations'.freeze
 

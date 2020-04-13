@@ -3,9 +3,6 @@ require 'oxford_dictionary/endpoints/endpoint'
 module OxfordDictionary
   module Endpoints
     # Interface for the /lemmas endpoint
-    #
-    # API documentation can be found here:
-    # https://developer.oxforddictionaries.com/documentation
     class Lemmas < Endpoint
       ENDPOINT = 'lemmas'.freeze
 
