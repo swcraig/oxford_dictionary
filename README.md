@@ -79,7 +79,7 @@ client.search(language: 'en-gb', params: { q: 'vapid' })
 client.thesaurus(
   word: 'book',
   language: 'en',
-  params: { fields: 'synonyms,antonyms}
+  params: { fields: 'synonyms,antonyms'}
 )
 # Or use { fields: 'synonyms' } for just synonyms
 ```
