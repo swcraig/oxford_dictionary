@@ -1,4 +1,5 @@
 require 'json'
+require 'ostruct'
 
 module OxfordDictionary
   # A small service object that parses a JSON payload into
