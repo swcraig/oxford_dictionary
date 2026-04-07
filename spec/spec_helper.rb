@@ -3,6 +3,10 @@
 require 'simplecov'
 SimpleCov.start
 $LOAD_PATH.unshift File.expand_path('../lib', __dir__)
+
+# Unit tests use production cassettes
+ENV['OXFORD_DICT_API_URL'] = 'https://od-api.oxforddictionaries.com/api/v2'
+
 require 'oxford_dictionary'
 require 'vcr'
 
