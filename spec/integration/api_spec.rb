@@ -5,9 +5,24 @@ require 'webmock'
 require 'json'
 
 RSpec.describe 'Oxford Dictionary API Integration Tests' do
-  # Skip entire suite if credentials are not available
+  # Fail fast if credentials are not available
   app_id = ENV.fetch('APP_ID', nil)
   app_key = ENV.fetch('APP_KEY', nil)
+
+  if app_id.nil? || app_key.nil?
+    raise <<~ERROR
+      Integration tests require Oxford Dictionary API credentials.
+
+      Please set the following environment variables:
+        export APP_ID=<your-app-id>
+        export APP_KEY=<your-app-key>
+
+      Then run:
+        bundle exec rake integration
+
+      Get credentials at: https://developer.oxforddictionaries.com/
+    ERROR
+  end
 
   before :all do
     # Disable WebMock so real HTTP calls go through
@@ -17,12 +32,6 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
   after :all do
     # Re-enable WebMock for other test suites
     WebMock.enable!
-  end
-
-  # Skip all tests if credentials not set
-  before do
-    skip 'Set APP_ID and APP_KEY environment variables to run integration tests' \
-      if app_id.nil? || app_key.nil?
   end
 
   # Rate limiting: sleep between each test
