@@ -2,9 +2,11 @@ name: Run default rake task (tests) on PRs and main rebases
 
 on:
   push:
-    branches: [ * ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   test:
