@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'oxford_dictionary/endpoints/endpoint'
 
 module OxfordDictionary
   module Endpoints
     # Interface for the /search endpoint
     class Search < Endpoint
-      ENDPOINT = 'search'.freeze
+      ENDPOINT = 'search'
 
       def search(language:, params: {})
         path = "#{ENDPOINT}/#{language}"

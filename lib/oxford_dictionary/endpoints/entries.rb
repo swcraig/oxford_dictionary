@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'oxford_dictionary/endpoints/endpoint'
 
 module OxfordDictionary
   module Endpoints
     # Interface for the /entries endpoint
     class Entries < Endpoint
-      ENDPOINT = 'entries'.freeze
+      ENDPOINT = 'entries'
 
       # Return all the entries for a word
       #

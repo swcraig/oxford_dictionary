@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'oxford_dictionary/deserialize'
 
 module OxfordDictionary

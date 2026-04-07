@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'oxford_dictionary/endpoints/entries'
 require 'oxford_dictionary/endpoints/lemmas'
 require 'oxford_dictionary/endpoints/translations'
@@ -19,6 +21,7 @@ module OxfordDictionary
       unless params.is_a?(Hash) && params.key?(:app_id) && params.key?(:app_key)
         raise(ArgumentError, 'app_id and app_key arguments required.')
       end
+
       params.each { |key, value| instance_variable_set("@#{key}", value) }
     end
 

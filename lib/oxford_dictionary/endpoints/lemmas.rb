@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'oxford_dictionary/endpoints/endpoint'
 
 module OxfordDictionary
   module Endpoints
     # Interface for the /lemmas endpoint
     class Lemmas < Endpoint
-      ENDPOINT = 'lemmas'.freeze
+      ENDPOINT = 'lemmas'
 
       # Returns all possible lemmas for a word
       #

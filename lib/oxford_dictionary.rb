@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'oxford_dictionary/client'
 require 'oxford_dictionary/version'
 

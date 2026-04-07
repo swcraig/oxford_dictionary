@@ -1,5 +1,22 @@
 Lint/ImplicitStringConcatenation:
   Enabled: false
 
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: trailing
+
+# Test blocks are naturally long in RSpec
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+# This codebase intentionally uses OpenStruct for deserialized API responses
+Style/OpenStructUse:
+  Enabled: false
+
+# Development dependencies are correctly specified in Gemfile
+Gemspec/DevelopmentDependencies:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
+  SuggestExtensions: false
