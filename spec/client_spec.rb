@@ -27,7 +27,7 @@ RSpec.describe OxfordDictionary::Client do
   end
 
   describe '#entry' do
-    subject { client.entry(args) }
+    subject { client.entry(**args) }
 
     context 'when the argument is a Hash' do
       let(:args) { { word: 'ace', dataset: 'en-us', params: {} } }
