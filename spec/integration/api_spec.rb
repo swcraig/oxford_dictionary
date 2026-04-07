@@ -2,6 +2,7 @@
 
 require 'oxford_dictionary'
 require 'webmock'
+require 'json'
 
 RSpec.describe 'Oxford Dictionary API Integration Tests' do
   # Skip entire suite if credentials are not available
@@ -37,12 +38,17 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
     )
   end
 
+  def print_response(response)
+    puts '  Response (as JSON):'
+    response_hash = response.to_h
+    puts(JSON.pretty_generate(response_hash).lines.map { |line| "    #{line}" })
+  end
+
   describe 'Entries endpoint' do
     it 'retrieves entry for a word' do
       puts "\n[entries] Calling: client.entry(word: 'vapid', dataset: 'en-gb', params: {})"
       response = client.entry(word: 'vapid', dataset: 'en-gb', params: {})
-      puts "  Response type: #{response.class}"
-      puts "  Response keys: #{response.to_h.keys.first(5).join(', ')}"
+      print_response(response)
 
       expect(response).to be_an(OpenStruct)
       expect(response).not_to be_nil
@@ -53,8 +59,7 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
     it 'retrieves lemmas for a word' do
       puts "\n[lemmas] Calling: client.lemma(word: 'condition', language: 'en', params: {})"
       response = client.lemma(word: 'condition', language: 'en', params: {})
-      puts "  Response type: #{response.class}"
-      puts "  Response keys: #{response.to_h.keys.first(5).join(', ')}"
+      print_response(response)
 
       expect(response).to be_an(OpenStruct)
       expect(response).not_to be_nil
@@ -71,8 +76,7 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
         target_language: 'es',
         params: {}
       )
-      puts "  Response type: #{response.class}"
-      puts "  Response keys: #{response.to_h.keys.first(5).join(', ')}"
+      print_response(response)
 
       expect(response).to be_an(OpenStruct)
       expect(response).not_to be_nil
@@ -83,8 +87,7 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
     it 'retrieves example sentences for a word' do
       puts "\n[sentences] Calling: client.sentence(word: 'paraphrase', language: 'en', params: {})"
       response = client.sentence(word: 'paraphrase', language: 'en', params: {})
-      puts "  Response type: #{response.class}"
-      puts "  Response keys: #{response.to_h.keys.first(5).join(', ')}"
+      print_response(response)
 
       expect(response).to be_an(OpenStruct)
       expect(response).not_to be_nil
@@ -95,8 +98,7 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
     it 'retrieves thesaurus data (synonyms/antonyms) for a word' do
       puts "\n[thesaurus] Calling: client.thesaurus(word: 'book', language: 'en', params: {})"
       response = client.thesaurus(word: 'book', language: 'en', params: {})
-      puts "  Response type: #{response.class}"
-      puts "  Response keys: #{response.to_h.keys.first(5).join(', ')}"
+      print_response(response)
 
       expect(response).to be_an(OpenStruct)
       expect(response).not_to be_nil
@@ -107,8 +109,7 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
     it 'searches for words' do
       puts "\n[search] Calling: client.search(language: 'en-gb', params: { q: 'vapid' })"
       response = client.search(language: 'en-gb', params: { q: 'vapid' })
-      puts "  Response type: #{response.class}"
-      puts "  Response keys: #{response.to_h.keys.first(5).join(', ')}"
+      print_response(response)
 
       expect(response).to be_an(OpenStruct)
       expect(response).not_to be_nil
@@ -122,8 +123,7 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
         target_language: 'es',
         params: { q: 'condition' }
       )
-      puts "  Response type: #{response.class}"
-      puts "  Response keys: #{response.to_h.keys.first(5).join(', ')}"
+      print_response(response)
 
       expect(response).to be_an(OpenStruct)
       expect(response).not_to be_nil
