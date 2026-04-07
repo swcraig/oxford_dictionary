@@ -38,11 +38,24 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
     )
   end
 
+  # rubocop:disable Metrics/AbcSize, Metrics/MethodLength
   def print_response(response)
-    puts '  Response (as JSON):'
+    cyan = "\e[36m"
+    reset = "\e[0m"
+
+    puts "#{cyan}  Deserialized OpenStruct (property access):#{reset}"
+    puts "#{cyan}    response.class = #{response.class}#{reset}"
+    puts "#{cyan}    response.to_h.keys = #{response.to_h.keys.inspect}#{reset}"
+    puts("#{cyan}    response.id = #{response.id.inspect}#{reset}") if response.respond_to?(:id)
+    puts("#{cyan}    response.results.class = #{response.results.class}#{reset}") \
+      if response.respond_to?(:results) && response.results
+    puts("#{cyan}    response.word = #{response.word.inspect}#{reset}") if response.respond_to?(:word)
+
+    puts "\n  Full Response (as JSON):"
     response_hash = response.to_h
     puts(JSON.pretty_generate(response_hash).lines.map { |line| "    #{line}" })
   end
+  # rubocop:enable Metrics/AbcSize, Metrics/MethodLength
 
   describe 'Entries endpoint' do
     it 'retrieves entry for a word' do
