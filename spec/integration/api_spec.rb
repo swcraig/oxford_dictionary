@@ -46,8 +46,8 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
 
   describe 'Entries endpoint' do
     it 'retrieves entry for a word' do
-      puts "\n[entries] Calling: client.entry(word: 'vapid', dataset: 'en-gb', params: {})"
-      response = client.entry(word: 'vapid', dataset: 'en-gb', params: {})
+      puts "\n[entries] Calling: client.entry(word: 'apple', dataset: 'en-gb', params: {})"
+      response = client.entry(word: 'apple', dataset: 'en-gb', params: {})
       print_response(response)
 
       expect(response).to be_an(OpenStruct)
@@ -57,8 +57,8 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
 
   describe 'Lemmas endpoint' do
     it 'retrieves lemmas for a word' do
-      puts "\n[lemmas] Calling: client.lemma(word: 'condition', language: 'en', params: {})"
-      response = client.lemma(word: 'condition', language: 'en', params: {})
+      puts "\n[lemmas] Calling: client.lemma(word: 'able', language: 'en', params: {})"
+      response = client.lemma(word: 'able', language: 'en', params: {})
       print_response(response)
 
       expect(response).to be_an(OpenStruct)
@@ -68,10 +68,10 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
 
   describe 'Translations endpoint' do
     it 'retrieves translations for a word' do
-      puts "\n[translations] Calling: client.translation(word: 'condition', " \
+      puts "\n[translations] Calling: client.translation(word: 'assess', " \
            "source_language: 'en', target_language: 'es', params: {})"
       response = client.translation(
-        word: 'condition',
+        word: 'assess',
         source_language: 'en',
         target_language: 'es',
         params: {}
@@ -85,8 +85,8 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
 
   describe 'Sentences endpoint' do
     it 'retrieves example sentences for a word' do
-      puts "\n[sentences] Calling: client.sentence(word: 'paraphrase', language: 'en', params: {})"
-      response = client.sentence(word: 'paraphrase', language: 'en', params: {})
+      puts "\n[sentences] Calling: client.sentence(word: 'analysis', language: 'en', params: {})"
+      response = client.sentence(word: 'analysis', language: 'en', params: {})
       print_response(response)
 
       expect(response).to be_an(OpenStruct)
@@ -96,8 +96,8 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
 
   describe 'Thesaurus endpoint' do
     it 'retrieves thesaurus data (synonyms/antonyms) for a word' do
-      puts "\n[thesaurus] Calling: client.thesaurus(word: 'book', language: 'en', params: {})"
-      response = client.thesaurus(word: 'book', language: 'en', params: {})
+      puts "\n[thesaurus] Calling: client.thesaurus(word: 'amiable', language: 'en', params: {})"
+      response = client.thesaurus(word: 'amiable', language: 'en', params: {})
       print_response(response)
 
       expect(response).to be_an(OpenStruct)
@@ -107,8 +107,8 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
 
   describe 'Search endpoint' do
     it 'searches for words' do
-      puts "\n[search] Calling: client.search(language: 'en-gb', params: { q: 'vapid' })"
-      response = client.search(language: 'en-gb', params: { q: 'vapid' })
+      puts "\n[search] Calling: client.search(language: 'en-gb', params: { q: 'about' })"
+      response = client.search(language: 'en-gb', params: { q: 'about' })
       print_response(response)
 
       expect(response).to be_an(OpenStruct)
@@ -117,11 +117,11 @@ RSpec.describe 'Oxford Dictionary API Integration Tests' do
 
     it 'searches for translations' do
       puts "\n[search_translation] Calling: client.search_translation(" \
-           "source_language: 'en', target_language: 'es', params: { q: 'condition' })"
+           "source_language: 'en', target_language: 'es', params: { q: 'able' })"
       response = client.search_translation(
         source_language: 'en',
         target_language: 'es',
-        params: { q: 'condition' }
+        params: { q: 'able' }
       )
       print_response(response)
 
