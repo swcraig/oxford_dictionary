@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'oxford_dictionary/request'
 
 RSpec.describe OxfordDictionary::Request do
-  let(:app_id) { ENV['APP_ID'] }
-  let(:app_key) { ENV['APP_KEY'] }
+  let(:app_id) { ENV.fetch('APP_ID', nil) }
+  let(:app_key) { ENV.fetch('APP_KEY', nil) }
   let(:request_client) { described_class.new(app_id: app_id, app_key: app_key) }
 
   describe '#get' do

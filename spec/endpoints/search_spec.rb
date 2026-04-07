@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 require 'oxford_dictionary/endpoints/search'
 
@@ -7,7 +9,7 @@ require 'oxford_dictionary/request'
 RSpec.describe OxfordDictionary::Endpoints::Search do
   let(:request_client) do
     OxfordDictionary::Request.
-      new(app_id: ENV['APP_ID'], app_key: ENV['APP_KEY'])
+      new(app_id: ENV.fetch('APP_ID', nil), app_key: ENV.fetch('APP_KEY', nil))
   end
 
   let(:endpoint) { described_class.new(request_client: request_client) }

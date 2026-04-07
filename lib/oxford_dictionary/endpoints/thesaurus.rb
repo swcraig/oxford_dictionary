@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'oxford_dictionary/endpoints/endpoint'
 
 module OxfordDictionary
   module Endpoints
     # Interface for the /thesaurus endpoint
     class Thesaurus < Endpoint
-      ENDPOINT = 'thesaurus'.freeze
+      ENDPOINT = 'thesaurus'
 
       def thesaurus(word:, language:, params: {})
         path = "#{ENDPOINT}/#{language}/#{word}"

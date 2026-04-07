@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'oxford_dictionary/endpoints/endpoint'
 
 module OxfordDictionary
   module Endpoints
     # Interface for the /translations endpoint
     class Translations < Endpoint
-      ENDPOINT = 'translations'.freeze
+      ENDPOINT = 'translations'
 
       def translation(word:, source_language:, target_language:, params: {})
         path = "#{ENDPOINT}/#{source_language}/#{target_language}/#{word}"

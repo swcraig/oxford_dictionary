@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'net/http'
 
 module OxfordDictionary
   # A lightweight request class for use by the endpoints
   # All endpoints implement only the GET action
   class Request
-    BASE_URL = 'https://od-api.oxforddictionaries.com/api/v2'.freeze
+    BASE_URL = 'https://od-api.oxforddictionaries.com/api/v2'
 
     def initialize(app_id:, app_key:)
       @app_id = app_id

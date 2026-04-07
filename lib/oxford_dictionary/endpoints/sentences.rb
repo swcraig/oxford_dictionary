@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 require 'oxford_dictionary/endpoints/endpoint'
 
 module OxfordDictionary
   module Endpoints
     # Interface for the /sentences endpoint
     class Sentences < Endpoint
-      ENDPOINT = 'sentences'.freeze
+      ENDPOINT = 'sentences'
 
       def sentence(word:, language:, params: {})
         path = "#{ENDPOINT}/#{language}/#{word}"
